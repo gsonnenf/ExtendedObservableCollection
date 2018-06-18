@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableBaseCollection<TItem> : 
-        ObservableNotifyCollectionBase, 
+    public abstract class BaseObservableCollection<TItem> : 
+        NotifyCollectionBase, 
         IObservableCollection<TItem> {
 
         protected abstract ICollection<TItem> InternalCollection { get; }

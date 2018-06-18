@@ -25,7 +25,7 @@ namespace Gstc.Collections.Observable {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TItem"></typeparam>
-    public abstract class ObservableListKeyed<TKey,TItem> : ObservableBaseDictionaryList<TKey, TItem> {
+    public abstract class ObservableListKeyed<TKey,TItem> : BaseDictionaryList<TKey, TItem> {
 
         //Backing list, and dictionary to store keyValuePairs for fast lookup
         private List<TItem> _list = new List<TItem>();
@@ -48,7 +48,7 @@ namespace Gstc.Collections.Observable {
 
         
         /// <summary>
-        /// Sets the internal list the ObservableListKeyed is bound too.
+        /// Sets the internal list the ListKeyed is bound too.
         /// </summary>
         public List<TItem> List {
             get { return _list; }

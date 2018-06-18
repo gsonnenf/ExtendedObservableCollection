@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableNotifyBase : INotifyPropertyChanged {
+namespace Gstc.Collections.Observable.Notify {
+    public abstract class NotifyBase : INotifyPropertyChanged {
         protected const string CountString = "Count";
         protected const string IndexerName = "Item[]";
 

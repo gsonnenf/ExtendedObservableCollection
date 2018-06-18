@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gstc.Collections.Observable.Interface;
 
 namespace Gstc.Collections.Observable.Base {
 
     //TODO: Rename as ObservableIDictionaryBase and break out into several different things
-    public abstract class ObservableBaseDictionaryList<TKey, TValue> : 
-        ObservableBaseListKey<TKey,TValue>, 
+    public abstract class BaseDictionaryList<TKey, TValue> : 
+        BaseObservableListKey<TKey,TValue>, 
         IObservableDictionaryCollection<TKey,TValue>,
         IObservableList<TValue> {
 

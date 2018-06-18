@@ -35,6 +35,7 @@ namespace Gstc.Collections.Observable.Test {
         [Test, Description("")]
         public void TestMethod_Clear() {
 
+
             ObvSortedList.Add(DefaultKey, DefaultValue);
 
             ObvSortedList.CollectionChanged += AssertCollectionEventReset;
@@ -44,8 +45,8 @@ namespace Gstc.Collections.Observable.Test {
             ObvSortedList.Clear();
 
             AssertMockEventNotifiers(2,1,1);
-            Assert.That(ObvSortedList.Count(), Is.EqualTo(0));           
-          
+            Assert.That(ObvSortedList.Count, Is.EqualTo(0));
+            
         }
 
         
@@ -58,7 +59,7 @@ namespace Gstc.Collections.Observable.Test {
             ObvSortedList.DictionaryChanged += AssertDictionaryEventReset;
             AddMockEventNotifiers();
 
-            ObvSortedList.SortedList = new SortedList<object, object>();
+            ObvSortedList.SortedList = new System.Collections.Generic.SortedList<object, object>();
 
             AssertMockEventNotifiers(2, 1, 1);
             Assert.That( ObvSortedList.Count, Is.EqualTo(0));

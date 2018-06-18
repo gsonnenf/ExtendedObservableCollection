@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable.Notify;
 
-namespace Gstc.Collections.Observable.Base {
+namespace Gstc.Collections.Observable.Notify {
+
     public class NotifyDictionaryChangedEventArgs {
 
         #region contructors

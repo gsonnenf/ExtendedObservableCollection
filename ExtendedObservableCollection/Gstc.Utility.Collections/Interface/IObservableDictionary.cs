@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Gstc.Collections.Observable.Notify;
 
-namespace Gstc.Collections.Observable.Base {
+namespace Gstc.Collections.Observable.Interface {
     public interface IObservableDictionary<TKey,TValue> : 
         IDictionary<TKey, TValue>, 
         INotifyDictionaryChanged<TKey,TValue> {

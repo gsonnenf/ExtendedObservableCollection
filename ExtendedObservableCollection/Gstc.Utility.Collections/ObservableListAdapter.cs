@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable.Interface;
 
 namespace Gstc.Collections.Observable {
     /// <summary>
@@ -65,6 +65,8 @@ namespace Gstc.Collections.Observable {
                     };
         }
 
+
+        //TODO: Add an optional dispatcher method to execute update code on a UI thread.
         public void SourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs args) {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:

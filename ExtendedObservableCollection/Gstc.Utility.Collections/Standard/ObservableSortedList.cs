@@ -9,9 +9,10 @@ namespace Gstc.Collections.Observable {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class ObservableSortedList<TKey, TValue> : ObservableBaseDictionaryCollection<TKey, TValue> {
+    public class ObservableSortedList<TKey, TValue> : BaseDictionaryCollection<TKey, TValue> {
        
         private SortedList<TKey, TValue> _sortedList;
+        protected override ICollection<TValue> InternalCollection => throw new NotImplementedException();
         protected override IDictionary<TKey, TValue> InternalDictionary => _sortedList;
 
         #region constructor
@@ -19,6 +20,7 @@ namespace Gstc.Collections.Observable {
         public ObservableSortedList() {
             _sortedList = new SortedList<TKey, TValue>();
         }
+
         public ObservableSortedList(SortedList<TKey, TValue> sortedList) {
             _sortedList = sortedList;
         }
@@ -35,7 +37,6 @@ namespace Gstc.Collections.Observable {
             }
         }
      
-
         #region override methods
         public override TValue this[TKey key] {
             get { return _sortedList[key]; }
@@ -73,14 +74,16 @@ namespace Gstc.Collections.Observable {
             var removedIndex = _sortedList.IndexOfKey(key);
             var removedValue = _sortedList[key];
             //var index = ((ICollection)Dictionary)).
-            if (!_sortedList.Remove(key)) return false;
+            if ( !_sortedList.Remove(key) ) return false;
             OnPropertyChangedIndexerCount();
             OnCollectionRemove(removedValue, removedIndex);
             OnDictionaryRemove(key, removedValue);
 
             return true;
         }
-       
+
+        
+
         #endregion
     }
     

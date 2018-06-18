@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gstc.Collections.Observable.Base;
+﻿using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable.Interface {
     public interface IObservableList<TItem> :

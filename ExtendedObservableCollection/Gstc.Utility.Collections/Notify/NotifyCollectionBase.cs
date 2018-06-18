@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
+using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableNotifyCollectionBase : ObservableNotifyBase, INotifyCollectionChanged {
+namespace Gstc.Collections.Observable.Notify {
+    public abstract class NotifyCollectionBase : NotifyBase, INotifyCollectionChanged {
         #region INotifyCollectionChanged
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 

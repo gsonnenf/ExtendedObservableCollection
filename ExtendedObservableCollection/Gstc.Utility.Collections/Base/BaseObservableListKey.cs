@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableBaseListKey<TKey,TValue> : 
-        ObservableNotifyDictionaryCollectionBase<TKey,TValue>,
+    public abstract class BaseObservableListKey<TKey,TValue> : 
+        NotifyDictionaryCollectionBase<TKey,TValue>,
         IObservableList<TValue> {
 
         protected abstract IList<TValue> InternalList { get; }

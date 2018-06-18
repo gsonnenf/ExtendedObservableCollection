@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableNotifyDictionaryCollectionBase<TKey,TValue> : ObservableNotifyCollectionBase, 
+namespace Gstc.Collections.Observable.Notify {
+    public abstract class NotifyDictionaryCollectionBase<TKey,TValue> : NotifyCollectionBase, 
         INotifyDictionaryChanged<TKey, TValue> {
 
         public event NotifyDictionaryChangedEventHandler<TKey, TValue> DictionaryChanged;

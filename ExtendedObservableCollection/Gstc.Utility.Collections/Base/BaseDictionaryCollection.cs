@@ -1,35 +1,36 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableBaseDictionaryCollection<TKey, TValue> : 
-        ObservableNotifyDictionaryCollectionBase<TKey, TValue>, 
+    public abstract class BaseDictionaryCollection<TKey, TValue> : 
+        NotifyDictionaryCollectionBase<TKey, TValue>, 
         IObservableDictionaryCollection<TKey,TValue> {
 
+        protected abstract ICollection<TValue> InternalCollection { get; }
             
         protected abstract IDictionary<TKey, TValue> InternalDictionary { get; }
         //Dictionary
         public abstract TValue this[TKey key] { get; set; }
-        public abstract void Clear();
+       
         public abstract void Add(TKey key, TValue value);
         public abstract bool Remove(TKey key);
-        //ICollection
-        //public abstract void Add(TValue item);
-        //public abstract bool Remove(TValue item);
+        public abstract void Clear();
+     
 
         #region Icollection
+
+        IEnumerator IEnumerable.GetEnumerator() => InternalDictionary.GetEnumerator();
         public int Count => InternalDictionary.Count;
         public bool IsReadOnly => InternalDictionary.IsReadOnly;
-
-        //ICollection
-        //public bool Contains(TValue item) => InternalCollection.Contains(item);
-        //public void CopyTo(TValue[] array, int arrayIndex) => InternalCollection.CopyTo(array, arrayIndex);
-        //public IEnumerator<TValue> GetEnumerator() => InternalCollection.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => InternalDictionary.GetEnumerator();
+        public IEnumerator<TValue> GetEnumerator() => InternalCollection.GetEnumerator();
+        public bool Contains(TValue item) => InternalCollection.Contains(item);
+        public void CopyTo(TValue[] array, int arrayIndex) => InternalCollection.CopyTo(array, arrayIndex);
+       
+        void ICollection<TValue>.Add(TValue item) => throw new NotImplementedException();
+        bool ICollection<TValue>.Remove(TValue item) =>  throw new NotImplementedException();
 
         //IDictionary
         public bool ContainsKey(TKey key) => InternalDictionary.ContainsKey(key);
@@ -48,5 +49,6 @@ namespace Gstc.Collections.Observable.Base {
 
         #endregion
 
+       
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Base {
+namespace Gstc.Collections.Observable.Notify {
     public class NotifyDictionaryChangedEventArgs<TKey,TValue> : NotifyDictionaryChangedEventArgs {
 
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action) : base(action) { }

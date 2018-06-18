@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoFixture;
+﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 

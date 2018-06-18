@@ -1,13 +1,12 @@
-﻿
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
 
-    public abstract class ObservableBaseList<TItem> : 
-        ObservableNotifyCollectionBase,
+    public abstract class BaseObservableList<TItem> : 
+        NotifyCollectionBase,
         IObservableList<TItem> {
 
         protected abstract IList<TItem> InternalList { get; }

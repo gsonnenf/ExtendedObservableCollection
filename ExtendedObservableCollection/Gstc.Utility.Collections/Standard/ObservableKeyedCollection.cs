@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Gstc.Collections.Observable.Base;
 
 namespace Gstc.Collections.Observable {
@@ -16,7 +12,7 @@ namespace Gstc.Collections.Observable {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class ObservableDictionaryListKeyedCollection<TKey, TValue> : ObservableBaseDictionaryList<TKey, TValue> {
+    public class DictionaryListKeyedCollection<TKey, TValue> : BaseDictionaryList<TKey, TValue> {
 
         private KeyedCollection<TKey, TValue> _collection;
 
@@ -36,7 +32,7 @@ namespace Gstc.Collections.Observable {
         /// </summary>
         /// <param name="collection"></param>
         /// <param name="getKeyForItem"></param>
-        protected ObservableDictionaryListKeyedCollection(KeyedCollection<TKey, TValue> collection, Func<TValue, TKey> getKeyForItem) {
+        protected DictionaryListKeyedCollection(KeyedCollection<TKey, TValue> collection, Func<TValue, TKey> getKeyForItem) {
             _collection = collection;
             GetKeyForItem = getKeyForItem;
         }

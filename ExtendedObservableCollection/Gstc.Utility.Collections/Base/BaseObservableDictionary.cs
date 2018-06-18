@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class ObservableBaseDictionary<TKey, TValue> : 
-        ObservableNotifyDictionaryBase<TKey, TValue>,
+    public abstract class BaseObservableDictionary<TKey, TValue> : 
+        NotifyDictionaryBase<TKey, TValue>,
         IObservableDictionary<TKey, TValue> {
 
         protected abstract IDictionary<TKey, TValue> InternalDictionary { get; }

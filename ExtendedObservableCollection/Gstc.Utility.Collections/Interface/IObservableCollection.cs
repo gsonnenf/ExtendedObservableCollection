@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Gstc.Collections.Observable.Base {
+namespace Gstc.Collections.Observable.Interface {
     public interface IObservableCollection<TItem> : 
         ICollection<TItem>, 
         INotifyCollectionChanged {}

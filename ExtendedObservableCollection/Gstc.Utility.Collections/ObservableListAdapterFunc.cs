@@ -1,5 +1,5 @@
 ﻿using System;
-using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable.Interface;
 
 namespace Gstc.Collections.Observable {
 

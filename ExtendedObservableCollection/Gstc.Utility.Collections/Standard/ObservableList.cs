@@ -11,9 +11,9 @@ namespace Gstc.Collections.Observable {
     /// for its compatiblity with existing collection types and interface.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public class ObservableList<TItem> : ObservableBaseList<TItem> {
+    public class ObservableList<TItem> : BaseObservableList<TItem> {
 
-        public ObservableList() : base() {}
+        public ObservableList() {}
 
         public ObservableList(List<TItem> list) {
             List = list;

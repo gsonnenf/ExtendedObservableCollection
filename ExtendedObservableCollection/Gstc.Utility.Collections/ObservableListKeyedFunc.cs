@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable {
     /// <summary>
-    /// This class is an implementation of ObservableListKeyed that defines its GetKey method
+    /// This class is an implementation of ListKeyed that defines its GetKey method
     /// via anonymous function at runtime.
     ///
-    /// See the ObservableListKeyed for more details. 
+    /// See the ListKeyed for more details. 
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>

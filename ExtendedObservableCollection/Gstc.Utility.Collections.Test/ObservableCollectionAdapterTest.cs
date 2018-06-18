@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AutoFixture;
 using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable.Interface;
 using Moq;
 using NUnit.Framework;
 
@@ -8,7 +9,7 @@ namespace Gstc.Collections.Observable.Test {
 
     [TestFixture]
     public class ObservableCollectionAdapterTest : TestUtils<object, string> {
-        private ObservableBaseList<string> TestBaseList { get; set; }
+        private BaseObservableList<string> TestBaseList { get; set; }
         private TestAdapterClass TestAdapter { get; set; }
       
         [SetUp]

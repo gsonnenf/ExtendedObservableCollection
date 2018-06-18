@@ -11,7 +11,7 @@ namespace Gstc.Collections.Observable {
     /// </summary>
     /// <typeparam name="TKey">Key field of Dictionary</typeparam>
     /// <typeparam name="TValue">Value field of Dictionary</typeparam>
-    public class ObservableDictionary<TKey, TValue> : ObservableBaseDictionary<TKey,TValue> {
+    public class ObservableDictionary<TKey, TValue> : BaseObservableDictionary<TKey,TValue> {
 
         private Dictionary<TKey, TValue> _dictionary;
 

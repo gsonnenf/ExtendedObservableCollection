@@ -9,12 +9,12 @@ namespace Gstc.Collections.Observable.Test {
     [TestFixture]
     public class ObservableListKeyedTest : TestUtils<string, ObservableListKeyedTest.TestItemClass> {
 
-        private ObservableListKeyedImpl ObvKeyedList { get; set; }
+        private ListKeyedImpl ObvKeyedList { get; set; }
 
         [SetUp]
         public new void TestInit() {
             base.TestInit();
-            ObvKeyedList = new ObservableListKeyedImpl();
+            ObvKeyedList = new ListKeyedImpl();
         }
 
         [Test, Description("")]
@@ -283,7 +283,7 @@ namespace Gstc.Collections.Observable.Test {
         /// <summary>
         /// Test implementations of KeyedList
         /// </summary>
-        public class ObservableListKeyedImpl : ObservableListKeyed<string, TestItemClass> {
+        public class ListKeyedImpl : ObservableListKeyed<string, TestItemClass> {
             public override string GetKey(TestItemClass item) => item.Key;
         }
 
