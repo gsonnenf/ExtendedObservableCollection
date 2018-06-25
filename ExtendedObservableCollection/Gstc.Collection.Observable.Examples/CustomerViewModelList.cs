@@ -1,4 +1,5 @@
 ﻿using Gstc.Collections.Observable;
+using Gstc.Collections.Observable.Nonstandard;
 
 namespace Gstc.Collection.Observable.Examples {
     //Implementation of abstract class Observable list Adapter.

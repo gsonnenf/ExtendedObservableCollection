@@ -1,90 +1,85 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.Standard {
 
     /// <summary>
     /// This class is a wrapper for a sorted list that implements INotifyCollectionChanged and INotifyDictionaryChanged.
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class ObservableSortedList<TKey, TValue> : BaseDictionaryCollection<TKey, TValue> {
+    public class ObservableSortedList<TKey, TValue> : BaseObservableSortedList<TKey, TValue> {
        
         private SortedList<TKey, TValue> _sortedList;
-        protected override ICollection<TValue> InternalCollection => throw new NotImplementedException();
-        protected override IDictionary<TKey, TValue> InternalDictionary => _sortedList;
+        protected override SortedList<TKey, TValue> InternalSortedList => _sortedList;
 
-        #region constructor
-
+        //Constructors
         public ObservableSortedList() {
             _sortedList = new SortedList<TKey, TValue>();
         }
 
         public ObservableSortedList(SortedList<TKey, TValue> sortedList) {
-            _sortedList = sortedList;
+            SortedList = sortedList;
         }
         
-        #endregion
-
+        //List
         public SortedList<TKey, TValue> SortedList {
-            get { return _sortedList;}
+            get => _sortedList;
             set {
                 _sortedList = value;
-                OnPropertyChangedIndexerCount();
-                OnCollectionReset();
+                OnPropertyChangedCountAndIndex();
+                OnCollectionChangedReset();
                 OnDictionaryReset();
             }
         }
-     
-        #region override methods
+
+        // Overrides
         public override TValue this[TKey key] {
-            get { return _sortedList[key]; }
+            get => _sortedList[key];
             set {
                 if (ContainsKey(key)) {
-                    CheckReentrancy();
+                    //CheckReentrancy();
                     var oldValue = _sortedList[key];
                     _sortedList[key] = value;
-                    OnPropertyChangedIndexer();
+                    OnPropertyChangedIndex();
                     OnDictionaryReplace(key, oldValue, value);
-                    OnCollectionReplace(oldValue, value, _sortedList.IndexOfKey(key));
+                    OnCollectionChangedReplace(oldValue, value, _sortedList.IndexOfKey(key));
                 } else Add(key, value);
             }
         }
 
         public override void Add(TKey key, TValue value) {
-            CheckReentrancy();
+            //CheckReentrancy();
             _sortedList.Add(key, value);           
-            OnPropertyChangedIndexerCount();
-            OnCollectionAdd(value, _sortedList.IndexOfKey(key) );
-            OnDictionaryAdd(key, value);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedAdd(value, _sortedList.IndexOfKey(key) );
+            OnDictionaryChangedAdd(key, value);
         }
    
 
         public override void Clear() {
-            CheckReentrancy();
+            //CheckReentrancy();
             _sortedList.Clear();
-            OnPropertyChangedIndexerCount();
-            OnCollectionReset();
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedReset();
             OnDictionaryReset();
         }
 
         public override bool Remove(TKey key) {
-            CheckReentrancy();           
+            //CheckReentrancy();           
             var removedIndex = _sortedList.IndexOfKey(key);
             var removedValue = _sortedList[key];
             //var index = ((ICollection)Dictionary)).
             if ( !_sortedList.Remove(key) ) return false;
-            OnPropertyChangedIndexerCount();
-            OnCollectionRemove(removedValue, removedIndex);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedRemove(removedValue, removedIndex);
             OnDictionaryRemove(key, removedValue);
 
             return true;
         }
 
-        
-
-        #endregion
     }
     
 }

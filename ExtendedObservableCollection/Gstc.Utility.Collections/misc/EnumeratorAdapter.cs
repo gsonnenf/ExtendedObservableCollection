@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.misc {
 
     /// <summary>
     /// Enumerator that exposes model item type (T1) as model view item type (T2). 

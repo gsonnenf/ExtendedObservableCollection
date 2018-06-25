@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.Nonstandard {
 
 
     /// <summary>
@@ -24,19 +23,18 @@ namespace Gstc.Collections.Observable {
     /// 
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    /// <typeparam name="TItem"></typeparam>
-    public abstract class ObservableListKeyed<TKey,TItem> : BaseDictionaryList<TKey, TItem> {
+    /// <typeparam name="TValue"></typeparam>
+    public abstract class ObservableListKeyed<TKey,TValue> : BaseObservableListDictionary<TKey, TValue> {
 
         //Backing list, and dictionary to store keyValuePairs for fast lookup
-        private List<TItem> _list = new List<TItem>();
-        private readonly Dictionary<TKey, TItem> _dictionary = new Dictionary<TKey, TItem>();
+        private List<TValue> _list = new List<TValue>();
+        private readonly Dictionary<TKey, TValue> _dictionary = new Dictionary<TKey, TValue>();
 
 
+        //Constructors
         protected ObservableListKeyed() {}
 
-        protected ObservableListKeyed(List<TItem> list) {
-            List = List;
-        }
+        protected ObservableListKeyed(List<TValue> list) { List = list;  }
 
         /// <summary>
         /// This is the map between your object and its internal key. It must be overridden, or alternatively use the ObservableKeyedListFunc class,
@@ -44,48 +42,70 @@ namespace Gstc.Collections.Observable {
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public abstract TKey GetKey(TItem item);
+        public abstract TKey GetKey(TValue item);
 
         
         /// <summary>
         /// Sets the internal list the ListKeyed is bound too.
         /// </summary>
-        public List<TItem> List {
-            get { return _list; }
+        public List<TValue> List {
+            get => _list;
             set {
                 _list = value;
                 _dictionary.Clear();
                 foreach (var element in _list)   _dictionary.Add(GetKey(element),element);
-                OnPropertyChangedIndexerCount();
-                OnCollectionReset();
+                OnPropertyChangedCountAndIndex();
+                OnCollectionChangedReset();
                 OnDictionaryReset();
             }
         }
         
         /// <summary>
-        /// Returns the internal dictionary that is used to track keys on the list. It is not advisable to edit.
+        /// Returns the internal dictionary that is used to track keys on the list.
         /// </summary>
-        public Dictionary<TKey, TItem> Dictionary => _dictionary;
+        public Dictionary<TKey, TValue> Dictionary => _dictionary;
 
-        public TItem GetOrDefault(TKey key) {
-            TItem item;
-            _dictionary.TryGetValue(key, out item);
+        public TValue GetOrDefault(TKey key) {
+            _dictionary.TryGetValue(key, out var item);
             return item;
         }
 
         #region override properties for inherentance
 
-        protected override IList<TItem> InternalList => _list;
-        protected override IDictionary<TKey, TItem> InternalDictionary => _dictionary;
+        protected override IList<TValue> InternalList => _list;
+        protected override IDictionary<TKey, TValue> InternalDictionary => _dictionary;
 
         #endregion
-        
+
         #region override Methods
 
-        public override TItem this[TKey key] {
-            get {
-                return _dictionary[key];
+        public override TValue this[int index] {
+            get => InternalList[index];
+            set {               
+                TValue item = value;
+                TKey key = GetKey(value);
+
+                if (_dictionary.ContainsKey(key)) {
+                    TValue oldItem = _dictionary[key];
+                    _dictionary[key] = item;
+                    _list[index] = item;
+                    OnPropertyChangedIndex();
+                    OnCollectionChangedReplace(oldItem, item, index);
+                    OnDictionaryReplace(key,oldItem,item);                    
+                }
+
+                else {
+                    _dictionary[key] = item;
+                    _list[index] = item;
+                    OnPropertyChangedCountAndIndex();
+                    OnCollectionChangedAdd(item, _list.IndexOf(item));
+                    OnDictionaryChangedAdd(key, item);
+                }      
             }
+        }
+
+        public override TValue this[TKey key] {
+            get => _dictionary[key];
             set {
                 if (!_dictionary.ContainsKey(key)) Add(key, value);
                 else {
@@ -95,71 +115,68 @@ namespace Gstc.Collections.Observable {
                     _dictionary[key] = value;
                     _list[index] = value;
 
-                    OnPropertyChangedIndexer();
+                    OnPropertyChangedIndex();
                     OnDictionaryReplace(key, item, value);
-                    OnCollectionReplace(item, value, index);
+                    OnCollectionChangedReplace(item, value, index);
                 }
             }
         }
 
-        public override void Add(TItem item) {
+        public override void Add(TValue item) {
             if (_dictionary.ContainsKey(GetKey(item))) throw new ArgumentException("Duplicate Keyed items are not allowed.");
             _dictionary.Add(GetKey(item), item);
             _list.Add(item);
 
-            OnPropertyChangedIndexerCount();
-            OnCollectionAdd(item, _list.IndexOf(item));
-            OnDictionaryAdd(GetKey(item), item);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedAdd(item, _list.IndexOf(item));
+            OnDictionaryChangedAdd(GetKey(item), item);
         }
 
-        public void AddRange(IList<TItem> items) {
+        public void AddRange(IList<TValue> items) {
             var count = _list.Count;
             _list.AddRange(items);
-            OnPropertyChangedIndexerCount();
-            OnCollectionAddEnumerable((IList)items, count);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedAddMany((IList)items, count);
         }
 
-        public override void Add(TKey key, TItem item) {
+        public override void Add(TKey key, TValue item) {
             if (!Equals(key, GetKey(item))) throw new ArgumentException("Explicit Key must match Item Key.");
             if (_dictionary.ContainsKey(key)) throw new ArgumentException("Duplicate Keyed items are not allowed.");
             _dictionary.Add(GetKey(item), item);
             _list.Add(item);
 
-            OnPropertyChangedIndexerCount();
-            OnCollectionAdd(item, _list.IndexOf(item));
-            OnDictionaryAdd(key, item);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedAdd(item, _list.IndexOf(item));
+            OnDictionaryChangedAdd(key, item);
         }
-
-        
-
 
         public override void Clear() {
             _dictionary.Clear();
             _list.Clear();
-            OnPropertyChangedIndexerCount();
-            OnCollectionReset();
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedReset();
             OnDictionaryReset();
         }
 
-        public override void Insert(int index, TItem item) {
+        public override void Insert(int index, TValue item) {
             var key = GetKey(item);
             if (_dictionary.ContainsKey(key)) throw new ArgumentException("Duplicate Keyed items are not allowed.");
             _dictionary.Add(key, item);
             _list.Insert(index, item);
 
-            OnPropertyChangedIndexerCount();
-            OnCollectionAdd(item, index);
-            OnDictionaryAdd(key, item);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedAdd(item, index);
+            OnDictionaryChangedAdd(key, item);
         }
 
         public override void Move(int oldIndex, int newIndex) {
-            TItem removedItem = this._list[oldIndex];
+            var removedItem = _list[oldIndex];
 
             _list.RemoveAt(oldIndex);
             _list.Insert(newIndex, removedItem);
 
-            OnPropertyChangedIndexer();
-            OnCollectionMove(removedItem, newIndex, oldIndex);
+            OnPropertyChangedIndex();
+            OnCollectionChangedMove(removedItem, newIndex, oldIndex);
         }
 
         public override bool Remove(TKey key) {
@@ -170,13 +187,13 @@ namespace Gstc.Collections.Observable {
             var index = _list.IndexOf(item);
             _list.RemoveAt(index);
 
-            OnPropertyChangedIndexerCount();
-            OnCollectionRemove(item, index);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedRemove(item, index);
             OnDictionaryRemove(key, item);
             return true;
         }
 
-        public override bool Remove(TItem item) {
+        public override bool Remove(TValue item) {
             var index = _list.IndexOf(item);
 
             if (index == -1) return false;
@@ -184,8 +201,8 @@ namespace Gstc.Collections.Observable {
             _list.RemoveAt(index);        
             _dictionary.Remove(key);
 
-            OnPropertyChangedIndexerCount();
-            OnCollectionRemove(item, index);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedRemove(item, index);
             OnDictionaryRemove(key, item);
             return true;
         }
@@ -196,10 +213,12 @@ namespace Gstc.Collections.Observable {
             var key = GetKey(item);
             _list.RemoveAt(index);
             _dictionary.Remove(key);
-            OnPropertyChangedIndexerCount();
-            OnCollectionRemove(item, index);
+            OnPropertyChangedCountAndIndex();
+            OnCollectionChangedRemove(item, index);
             OnDictionaryRemove(key, item);
         }
         #endregion
+
+       
     }
 }

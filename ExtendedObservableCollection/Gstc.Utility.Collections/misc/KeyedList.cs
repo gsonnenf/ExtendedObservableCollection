@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.misc {
     public abstract class KeyedList<TKey, TValue> : IList<TValue> {
 
         private List<TValue> _list;

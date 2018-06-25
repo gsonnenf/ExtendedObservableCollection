@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.misc {
 
     public class ObservableCollectionSync<T1, T2> : ObservableCollection<T2> where T1 : class where T2 : class{
         public ObservableCollection<T1> SourceCollection {

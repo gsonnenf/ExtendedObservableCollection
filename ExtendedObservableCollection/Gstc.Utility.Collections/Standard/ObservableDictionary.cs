@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.Standard {
 
     /// <summary>
     /// Observable dictionary can serve as a stand alone dictionary, or serve as an observable wrapper for a pre-existing dictionary.
@@ -20,12 +20,11 @@ namespace Gstc.Collections.Observable {
         }
 
         public ObservableDictionary(Dictionary<TKey, TValue> dictionary) {
-            _dictionary = dictionary;
-            OnDictionaryReset();
+            Dictionary = dictionary;
         }
 
         public Dictionary<TKey, TValue> Dictionary {
-            get { return _dictionary; }
+            get => _dictionary;
             set {
                 _dictionary = value;
                 OnPropertyChanged(CountString);
@@ -37,7 +36,7 @@ namespace Gstc.Collections.Observable {
         protected override IDictionary<TKey, TValue> InternalDictionary => Dictionary;
 
         public override TValue this[TKey key] {
-            get { return _dictionary[key]; }
+            get => _dictionary[key];
             set {
                 CheckReentrancy();
                 if (!ContainsKey(key)) {
@@ -63,8 +62,7 @@ namespace Gstc.Collections.Observable {
         public override void Clear() {
             CheckReentrancy();
             _dictionary.Clear();
-            OnPropertyChanged(CountString);
-            OnPropertyChanged(IndexerName);
+            OnPropertyChangedCountAndIndex();
             OnDictionaryReset();
         }
 
@@ -72,9 +70,7 @@ namespace Gstc.Collections.Observable {
             CheckReentrancy();
             var removedItem = _dictionary[key];           
             if (!_dictionary.Remove(key)) return false;
-
-            OnPropertyChanged(CountString);
-            OnPropertyChanged(IndexerName);           
+            OnPropertyChangedCountAndIndex();
             OnDictionaryRemove( key, removedItem);
             return true;
         }

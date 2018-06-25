@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.Nonstandard {
     /// <summary>
     /// This class is an implementation of ListKeyed that defines its GetKey method
     /// via anonymous function at runtime.
@@ -21,5 +21,7 @@ namespace Gstc.Collections.Observable {
         }
 
         public override TKey GetKey(TValue item) => GetKeyFunc(item);
+
+      
     }
 }

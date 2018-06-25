@@ -42,17 +42,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseObservableSortedList.cs" />
     <Compile Include="Interface\IObservableDictionary.cs" />
     <Compile Include="Interface\IObservableDictionaryCollection.cs" />
     <Compile Include="Base\BaseObservableCollection.cs" />
     <Compile Include="Base\BaseObservableDictionary.cs" />
-    <Compile Include="Base\BaseDictionaryCollection.cs" />
-    <Compile Include="Base\BaseObservableListKey.cs" />
-    <Compile Include="Base\BaseObservableMap.cs" />
+    <Compile Include="Base\BaseObservableDictionaryCollection.cs" />
     <Compile Include="Interface\IObservableList.cs" />
-    <Compile Include="Notify\NotifyDictionaryCollectionBase.cs" />
-    <Compile Include="Notify\NotifyDictionaryBase.cs" />
-    <Compile Include="Notify\NotifyCollectionBase.cs" />
+    <Compile Include="Notify\NotifyDictionaryCollection.cs" />
+    <Compile Include="Notify\NotifyDictionary.cs" />
+    <Compile Include="Notify\NotifyCollection.cs" />
     <Compile Include="Interface\IObservableCollection.cs" />
     <Compile Include="misc\CollectionViewAdapter.cs" />
     <Compile Include="misc\EnumeratorAdapter.cs" />
@@ -60,22 +59,23 @@
     <Compile Include="Notify\NotifyDictionaryChangedEventArgs.cs" />
     <Compile Include="Notify\NotifyDictionaryChangedEventArgs_Generic.cs" />
     <Compile Include="Base\BaseObservableList.cs" />
-    <Compile Include="unfinished\ObservableDictionaryCollection.cs" />
-    <Compile Include="ObservableListAdapterFunc.cs" />
-    <Compile Include="ObservableListKeyed.cs" />
-    <Compile Include="ObservableListKeyedFunc.cs" />
+    <Compile Include="Nonstandard\ObservableDictionaryCollection.cs" />
+    <Compile Include="Nonstandard\ObservableListAdapterFunc.cs" />
+    <Compile Include="Nonstandard\ObservableListKeyed.cs" />
+    <Compile Include="Nonstandard\ObservableListKeyedFunc.cs" />
     <Compile Include="Standard\ObservableList.cs" />
-    <Compile Include="Notify\NotifyBase.cs" />
+    <Compile Include="Notify\NotifyProperty.cs" />
     <Compile Include="misc\RefObservableCollection.cs" />
-    <Compile Include="ObservableListAdapter.cs" />
+    <Compile Include="Nonstandard\ObservableListAdapter.cs" />
     <Compile Include="misc\RefDictionary.cs" />
     <Compile Include="misc\ObservableCollectionSync.cs" />
     <Compile Include="Standard\ObservableDictionary.cs" />
-    <Compile Include="Base\BaseDictionaryList.cs" />
-    <Compile Include="Base\_delete.cs" />
-    <Compile Include="Standard\ObservableKeyedCollection.cs" />
+    <Compile Include="Base\BaseObservableListDictionary.cs" />
     <Compile Include="Standard\ObservableSortedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="unfinished\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

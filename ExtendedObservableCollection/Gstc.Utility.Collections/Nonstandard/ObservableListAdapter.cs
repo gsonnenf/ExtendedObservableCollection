@@ -2,8 +2,9 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Standard;
 
-namespace Gstc.Collections.Observable {
+namespace Gstc.Collections.Observable.Nonstandard {
     /// <summary>
     /// The Observable list adapter is a one-way synchronizer between a source observable list of type
     /// <TInput> and a destination observable list of <TOutput>. The method Convert(...) must be implemented
@@ -60,7 +61,7 @@ namespace Gstc.Collections.Observable {
             if (notifyPropertyChanged != null)
                 notifyPropertyChanged.PropertyChanged +=
                     (sender, args) => {
-                        OnCollectionReplace(item, item, IndexOf(item));
+                        OnCollectionChangedReplace(item, item, IndexOf(item));
                         Console.WriteLine(args.PropertyName);
                     };
         }

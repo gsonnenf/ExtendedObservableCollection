@@ -1,14 +1,17 @@
-﻿using Gstc.Collections.Observable.Base;
+﻿using System.Collections.Specialized;
+using Gstc.Collections.Observable.Base;
 
 namespace Gstc.Collections.Observable.Notify {
-    public abstract class NotifyDictionaryCollectionBase<TKey,TValue> : NotifyCollectionBase, 
-        INotifyDictionaryChanged<TKey, TValue> {
+    public abstract class NotifyDictionaryCollection<TKey,TValue> : 
+        NotifyCollection, 
+        INotifyDictionaryChanged<TKey, TValue>
+    {
 
         public event NotifyDictionaryChangedEventHandler<TKey, TValue> DictionaryChanged;
 
         protected virtual void OnDictionaryChanged(NotifyDictionaryChangedEventArgs<TKey, TValue> e) {
             if (DictionaryChanged == null) return;
-            using (BlockReentrancy()) { DictionaryChanged(this, e); }
+            using (BlockReentrancy()) { DictionaryChanged?.Invoke(this, e); }
         }
 
         //Reset
@@ -16,7 +19,7 @@ namespace Gstc.Collections.Observable.Notify {
             => OnDictionaryChanged(new NotifyDictionaryChangedEventArgs<TKey, TValue>(NotifyDictionaryChangedAction.Reset));
 
         //Add / Remove
-        protected void OnDictionaryAdd(TKey key, TValue item)
+        protected void OnDictionaryChangedAdd(TKey key, TValue item)
             => OnDictionaryChanged(new NotifyDictionaryChangedEventArgs<TKey, TValue>(NotifyDictionaryChangedAction.Add, key, item));
 
         protected void OnDictionaryRemove(TKey key, TValue item)

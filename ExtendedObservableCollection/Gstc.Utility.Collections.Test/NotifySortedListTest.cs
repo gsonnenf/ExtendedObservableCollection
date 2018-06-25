@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using AutoFixture;
+using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 

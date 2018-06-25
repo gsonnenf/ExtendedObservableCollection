@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 namespace Gstc.Collections.Observable.Notify {
-    public abstract class NotifyBase : INotifyPropertyChanged {
+    public abstract class NotifyProperty : INotifyPropertyChanged {
         protected const string CountString = "Count";
         protected const string IndexerName = "Item[]";
 
@@ -12,12 +12,12 @@ namespace Gstc.Collections.Observable.Notify {
 
         protected void OnPropertyChanged(string propertyName) => OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
 
-        protected void OnPropertyChangedIndexerCount() {
+        protected void OnPropertyChangedCountAndIndex() {
             OnPropertyChanged(CountString);
             OnPropertyChanged(IndexerName);
         }
 
-        protected void OnPropertyChangedIndexer() {
+        protected void OnPropertyChangedIndex() {
             OnPropertyChanged(IndexerName);
         }
 
@@ -31,7 +31,6 @@ namespace Gstc.Collections.Observable.Notify {
         }
 
         //TODO: Add Monitor for Collection Changed and Dictionary Changed
-
         protected void CheckReentrancy() {
             if (!_monitor.Busy) return;
             //if ((CollectionChanged == null) || (CollectionChanged.GetInvocationList().Length <= 1)) return;

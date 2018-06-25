@@ -2,8 +2,9 @@
 
 namespace Gstc.Collections.Observable.Interface {
     public interface IObservableList<TItem> :
-        IList<TItem>,
-        IObservableCollection<TItem> 
+        IObservableCollection<TItem>,
+        IList<TItem>
+        
          {
     }
 }

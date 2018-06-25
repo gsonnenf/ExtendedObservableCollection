@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Notify {
-
     public class NotifyDictionaryChangedEventArgs {
 
         #region contructors
@@ -133,43 +131,41 @@ namespace Gstc.Collections.Observable.Notify {
         #endregion
 
     }
-}
 
 
-public interface INotifyDictionaryChanged {   
-    event NotifyDictionaryChangedEventHandler DictionaryChanged;
-}
+    public interface INotifyDictionaryChanged {   
+        event NotifyDictionaryChangedEventHandler DictionaryChanged;
+    }
 
-public delegate void NotifyDictionaryChangedEventHandler(object sender, NotifyDictionaryChangedEventArgs e);
+    public delegate void NotifyDictionaryChangedEventHandler(object sender, NotifyDictionaryChangedEventArgs e);
 
-public enum NotifyDictionaryChangedAction {
-    Add,
-    Remove,
-    Replace,
-    Reset,
-    //Move,
-}
+    public enum NotifyDictionaryChangedAction {
+        Add,
+        Remove,
+        Replace,
+        Reset,
+        //Move,
+    }
 
-/// <summary>
-/// Kludge to keep code consistent with the .NET core error handling signatures.
-/// </summary>
-static class SR {
-    internal const string WrongActionForCtor = "WrongActionForCtor";
-    internal const string MustBeResetAddOrRemoveActionForCtor = "MustBeResetAddOrRemoveActionForCtor";
-    internal const string ResetActionRequiresNullItem = "ResetActionRequiresNullItem";
-    internal const string ResetActionRequiresNullKey = "ResetActionRequiresNullKey";
-    internal const string KeyMustNotBeNullOrZeroLength = "KeyMustNotBeNullOrZeroLength";
+    /// <summary>
+    /// Kludge to keep code consistent with the .NET core error handling signatures.
+    /// </summary>
+    static class SR {
+        internal const string WrongActionForCtor = "WrongActionForCtor";
+        internal const string MustBeResetAddOrRemoveActionForCtor = "MustBeResetAddOrRemoveActionForCtor";
+        internal const string ResetActionRequiresNullItem = "ResetActionRequiresNullItem";
+        internal const string ResetActionRequiresNullKey = "ResetActionRequiresNullKey";
+        internal const string KeyMustNotBeNullOrZeroLength = "KeyMustNotBeNullOrZeroLength";
 
-    public static string GetString(string name, params object[] args) {
-        var stringBuilder = new StringBuilder();
-        stringBuilder.Append(name);
-        stringBuilder.Append(" : ");
-        foreach (var arg in args) {
-            stringBuilder.Append(arg);
-            stringBuilder.Append(", ");
+        public static string GetString(string name, params object[] args) {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(name);
+            stringBuilder.Append(" : ");
+            foreach (var arg in args) {
+                stringBuilder.Append(arg);
+                stringBuilder.Append(", ");
+            }
+            return name;
         }
-        return name;
     }
 }
-
-

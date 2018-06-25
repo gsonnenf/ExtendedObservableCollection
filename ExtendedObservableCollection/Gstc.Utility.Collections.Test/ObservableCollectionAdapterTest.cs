@@ -2,6 +2,8 @@
 using AutoFixture;
 using Gstc.Collections.Observable.Base;
 using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable.Nonstandard;
+using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gstc.Collections.Observable;
+using Gstc.Collections.Observable.Standard;
 
 namespace Gstc.Collection.Observable.Examples {
     public class ObservableListDemo {
