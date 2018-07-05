@@ -12,21 +12,21 @@ The observable dictionaries in this library implement a custom INotifyDictionary
 
 ## STANDARD COLLECTION CLASSES
  
-### ObservableList<TItem>
+### ObservableList< TItem >
  The ObservableList implements INotifyCollectionChanged and INotifyPropertyChanged and is a wrapper for a standard List<>. It triggers NotifyCollectionChanged and NotifyPropertyChanged events for List operation: Add, AddRanmge, Clear, Insert, Move, Remove, RemoveAt and this[]. It implements all interfaces of List and triggers notify events for interface methods when downcast.
 
-### ObservableDictionary<TKey,TValue> 
+### ObservableDictionary< TKey, TValue > 
 The ObservableDictionary implements a INotifyDictionaryChanged and is a wrapper for a standard Dictionary<,>. It triggers NotifyDictionaryChanged events for the Dictionary operations: Add, Clear, Remove, and this[]. It implements all interfaces of Dictionary and triggers notify events for interface methods when downcast.
 
-### ObservableSortedList<TKey,TValue> 
+### ObservableSortedList< TKey, TValue > 
 The ObservableSortedList implements INotifyCollectionChanged, INotifyPropertyChanged and INotifyDictionaryChanged and is a wrapper for a standard SortedList<,>. It triggers events for Standad SortedList operations. It implements all interfaces of SortedList and triggers notify events for interface methods when downcast.
 
 ## EXTENDED COLLECTION CLASSES
 
-### ObservableListKeyed<TKey,TItem>
+### ObservableListKeyed< TKey, TItem >
 The ObservableListKeyed<,> is an ObservableList that allows indexing by a Key that is mapped to a property of the TItem. The mapping can be specified by implementing the abstract GetKey() method. Alternately, one can instantiate ObservableListKeyedFunc<,> with the mapping given as an anonymous function. It implements INotifyCollectionChanged, INotifyPropertyChanged and INotifyDictionaryChanged.
 
-### ObservableListAdapter<TInputItem,TOutputItem>
+### ObservableListAdapter< TInputItem, TOutputItem >
 The ObservableListAdapter<,> is an ObservableList<TOutputItem> that performs a unidirectional syncronization with an SourceCollection of type IObservableCollection<TInputItem>. The syncronization is peformed when an IObservableCollection is added via Constructor or changed using the SourceCollection property. The syncronization is maintained via added events. The The mapping can be specified by implementing the abstract "TOutput Convert(TInput item)" method. Alternately, one can instantiate ObservableListAdapterFunc<,> with the mapping given as an anonymous function. Its important to note, changes to items in the SourceCollection will propagate to the ObservableListAdapter, but changes to the ObservableListAdapter will NOT propagate back to the source collection. This option may be added in a future release.
  
 ### ObservableDictionaryCollection<,> - TBA
