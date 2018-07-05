@@ -11,28 +11,42 @@ namespace Gstc.Collections.Observable.Base {
         NotifyDictionaryCollection<TKey, TValue>,        
         IObservableDictionaryCollection<TKey,TValue>,
         IObservableList<TValue> {
-
+        
         protected abstract IList<TValue> InternalList { get; }
         protected abstract IDictionary<TKey, TValue> InternalDictionary { get; }
 
         public abstract TValue this[int index] { get; set; }
-        public abstract void Insert(int index, TValue item); //TODO: Make sure you did this one right
+        public abstract void Insert(int index, TValue item);
         public abstract void RemoveAt(int index);
         public abstract void Add(TValue item);
         public abstract void Clear();
         public abstract bool Remove(TValue item);
         public abstract void Move(int oldIndex, int newIndex);
 
+        //Dictionary<>
+        public abstract TValue this[TKey key] { get; set; }
+        public abstract void Add(TKey key, TValue value);
+        public abstract bool Remove(TKey key);
+        
         //List
         public int Count => InternalList.Count;
         public int IndexOf(TValue item) => InternalList.IndexOf(item);
 
         //Dictionary
-        public abstract TValue this[TKey key] { get; set; }
-        public abstract void Add(TKey key, TValue value);
-        public abstract bool Remove(TKey key);
+        object IDictionary.this[object key] {
+            get => ((IDictionary)InternalDictionary)[key];
+            set => this[(TKey)key] = (TValue)value;
+        }
+        void IDictionary.Add(object key, object value) => Add((TKey)key, (TValue)value);
+        void IDictionary.Remove(object key) => Remove((TKey) key);
+        bool IDictionary.Contains(object key) => InternalDictionary.ContainsKey((TKey) key);
+        bool IDictionary.IsFixedSize => ((IDictionary) InternalDictionary).IsFixedSize;
+        bool IDictionary.IsReadOnly => ((IDictionary)InternalDictionary).IsReadOnly;
+        ICollection IDictionary.Keys => ((IDictionary) InternalDictionary).Keys;
+        ICollection IDictionary.Values => ((IDictionary)InternalDictionary).Values;
+        IDictionaryEnumerator IDictionary.GetEnumerator() => ((IDictionary)InternalDictionary).GetEnumerator();
 
-        //Dictionary
+        //Dictionary<>
         public bool ContainsKey(TKey key) => InternalDictionary.ContainsKey(key);
         public bool TryGetValue(TKey key, out TValue value) => InternalDictionary.TryGetValue(key, out value);
 
@@ -52,7 +66,9 @@ namespace Gstc.Collections.Observable.Base {
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) => InternalDictionary.CopyTo(array, arrayIndex); bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly => InternalDictionary.IsReadOnly;
 
         //Enumerator
-        public IEnumerator<TValue> GetEnumerator() => InternalList.GetEnumerator();       
+        public IEnumerator<TValue> GetEnumerator() => InternalList.GetEnumerator();
+        
+
         IEnumerator IEnumerable.GetEnumerator() => InternalList.GetEnumerator();
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => InternalDictionary.GetEnumerator();
 

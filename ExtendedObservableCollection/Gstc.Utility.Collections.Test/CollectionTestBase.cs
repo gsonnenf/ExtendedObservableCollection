@@ -133,8 +133,6 @@ namespace Gstc.Collections.Observable.Test {
         }
         #endregion
 
-
-
         protected void Log(object message) => Console.WriteLine(message);
 
         #region Event Call Test
@@ -193,7 +191,7 @@ namespace Gstc.Collections.Observable.Test {
         }
 
         /// <summary>
-        /// Basic class for override with Moq. Moq proxies the Call method and counts number of times called.
+        /// Simple class for testing events using Moq. Moq proxies the Call method and counts number of times called.
         /// </summary>
         public class AssertEventClass {
             public virtual void Call(string obj) { }

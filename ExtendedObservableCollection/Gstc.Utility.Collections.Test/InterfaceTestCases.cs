@@ -3,9 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AutoFixture;
+using Gstc.Collections.Observable.Extended;
 using Gstc.Collections.Observable.Interface;
-using Gstc.Collections.Observable.Nonstandard;
 using Gstc.Collections.Observable.Notify;
+using Gstc.Collections.Observable.Standard;
 using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
@@ -141,6 +142,15 @@ namespace Gstc.Collections.Observable.Test {
 
             MockEvent.AddNotifiersDictionary(dictionary as INotifyDictionaryChanged<string, TestItem>);
 
+            //Special case: ObservableListKeyed must have key match mapped property in object.
+            if (dictionary is ObservableListKeyed<string, TestItem>) {
+                Key1 = Item1.Id;
+                Key2 = Item2.Id;
+                Key3 = Item3.Id;
+                DefaultKey = DefaultValue.Id;
+                UpdateKey = UpdateValue.Id;
+            }
+
             //Add Test
             dictionary.Add(Key1, Item1);
             Assert.AreEqual(1, dictionary.Count);
@@ -156,11 +166,14 @@ namespace Gstc.Collections.Observable.Test {
             MockEvent.AssertMockNotifiersDictionary(1);
 
             //index[] test
-            dictionary[Key1] = Item1;
+            dictionary[DefaultKey] = DefaultValue;
             Assert.AreEqual(1, dictionary.Count);
             MockEvent.AssertMockNotifiersDictionary(1);
 
-            dictionary[Key1] = Item2;
+            //Special case: ObservableListKeyed must have key match mapped property in object.
+            if (dictionary is ObservableListKeyed<string, TestItem>) UpdateValue.Id = DefaultKey;
+
+            dictionary[DefaultKey] = UpdateValue;
             Assert.AreEqual(1, dictionary.Count);
             MockEvent.AssertMockNotifiersDictionary(1);
 
@@ -170,6 +183,13 @@ namespace Gstc.Collections.Observable.Test {
             MockEvent.AssertMockNotifiersDictionary(1);
 
             //Keys/Value Test
+
+            //Special Case: Observable Sorted List will sort these, they must be in order or it will fail general test.
+            if (dictionary is ObservableSortedList<string, TestItem>) {
+                Key1 = "1";
+                Key2 = "2";
+            }
+
             dictionary.Add(Key1, Item1);
             dictionary.Add(Key2, Item2);
 
@@ -178,17 +198,14 @@ namespace Gstc.Collections.Observable.Test {
             Assert.AreSame(Key1, keys.Current);
             keys.MoveNext();
             Assert.AreSame(Key2, keys.Current);
-            keys.MoveNext();
-            Assert.IsNull(keys.Current);
+          
 
             var values = dictionary.Values.GetEnumerator();
             values.MoveNext();
             Assert.AreSame(Item1, values.Current);
             values.MoveNext();
             Assert.AreSame(Item2, values.Current);
-            values.MoveNext();
-            Assert.IsNull(values.Current);
-
+            
             //Readonlytest
             Assert.IsNotNull(dictionary.IsReadOnly);
 
@@ -196,7 +213,6 @@ namespace Gstc.Collections.Observable.Test {
             Assert.IsNotNull(dictionary.IsFixedSize);
 
             //Icollection
-
             var enumerator = dictionary.GetEnumerator();
             enumerator.MoveNext();
             Assert.AreSame(Key1, enumerator.Key);
@@ -205,10 +221,6 @@ namespace Gstc.Collections.Observable.Test {
             enumerator.MoveNext();
             Assert.AreSame(Key2, enumerator.Key);
             Assert.AreSame(Item2, enumerator.Value);
-
-            enumerator.MoveNext();
-            Assert.IsNull(enumerator.Current);
-
         }
 
         public void DictionaryGenericTest(IDictionary<string, TestItem> dictionary) {
@@ -216,7 +228,7 @@ namespace Gstc.Collections.Observable.Test {
             Assert.IsNotNull(dictionary as INotifyDictionaryChanged<string, TestItem>);
             MockEvent.AddNotifiersDictionary(dictionary as INotifyDictionaryChanged<string, TestItem>);
 
-            //Special case for keyed list where keys must match mapped property in object.
+            //Special case: ObservableListKeyed must have key match mapped property in object.
             if (dictionary is ObservableListKeyed<string, TestItem>) {
                 Key1 = Item1.Id;
                 Key2 = Item2.Id;
@@ -244,7 +256,9 @@ namespace Gstc.Collections.Observable.Test {
             Assert.AreEqual(1, dictionary.Count);
             MockEvent.AssertMockNotifiersDictionary(1);
 
-            if (dictionary is ObservableListKeyed<string, TestItem>) UpdateValue.Id = DefaultKey; //Special case for ListKeyed
+            //Special case: ObservableListKeyed must have key match mapped property in object.
+            if (dictionary is ObservableListKeyed<string, TestItem>) UpdateValue.Id = DefaultKey;
+
             dictionary[DefaultKey] = UpdateValue;
             Assert.AreEqual(1, dictionary.Count);
             MockEvent.AssertMockNotifiersDictionary(1);
@@ -255,6 +269,11 @@ namespace Gstc.Collections.Observable.Test {
             MockEvent.AssertMockNotifiersDictionary(1);
 
             //Keys/Value Test
+            if (dictionary is ObservableSortedList<string, TestItem>) { //Special case for a sorted list
+                Key1 = "1";
+                Key2 = "2";
+            }
+
             dictionary.Add(Key1, Item1);
             dictionary.Add(Key2, Item2);
 
@@ -307,12 +326,25 @@ namespace Gstc.Collections.Observable.Test {
 
             Assert.IsNotNull(collection as INotifyDictionaryChanged<string,TestItem>);
             MockEvent.AddNotifiersDictionary(collection as INotifyDictionaryChanged<string, TestItem>);
+
+            //Special case, ObservableListKeyed must have Keys match Item ID
+            if (collection is ObservableListKeyed<string, TestItem>) {
+                Key1 = Item1.Id;
+                Key2 = Item2.Id;
+                Key3 = Item3.Id;
+            }
+
+            //Special case, ObservableSortedList puts keys in order, so it must be added in alphabetical order to pass this general dictionary test.
+            if (collection is ObservableSortedList<string, TestItem>) {
+                Key1 = "1";
+                Key2 = "2";
+                Key3 = "3";
+            }
+
             //Add and count
-
-            var kvp1 = new KeyValuePair<string, TestItem>(Fixture.Create<string>(), Fixture.Create<TestItem>());
-            var kvp2 = new KeyValuePair<string, TestItem>(Fixture.Create<string>(), Fixture.Create<TestItem>());
-            var kvp3 = new KeyValuePair<string, TestItem>(Fixture.Create<string>(), Fixture.Create<TestItem>());
-
+            var kvp1 = new KeyValuePair<string, TestItem>(Key1, Item1);
+            var kvp2 = new KeyValuePair<string, TestItem>(Key2, Item2);
+            var kvp3 = new KeyValuePair<string, TestItem>(Key3, Item3);
 
             collection.Add(kvp1);
             Assert.AreEqual(1, collection.Count);

@@ -3,7 +3,7 @@ using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 
-namespace Gstc.Collections.Observable.Test {
+namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
     public class ObservableListTest : CollectionTestBase<object, object> {
 

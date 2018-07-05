@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using AutoFixture;
-using Gstc.Collections.Observable.Nonstandard;
+using Gstc.Collections.Observable.Extended;
 using Gstc.Collections.Observable.Notify;
 using Moq;
 using NUnit.Framework;
 
-namespace Gstc.Collections.Observable.Test {
+namespace Gstc.Collections.Observable.Test.Extended {
     [TestFixture]
     public class ObservableListKeyedTest : CollectionTestBase<string, ObservableListKeyedTest.TestItemClass> {
 

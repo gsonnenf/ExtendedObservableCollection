@@ -6,9 +6,9 @@ using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 
-namespace Gstc.Collections.Observable.Test {
+namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
-    public class NotifyDictionaryTest : CollectionTestBase<object,object> {
+    public class ObservableDictionaryTest : CollectionTestBase<object,object> {
       
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),

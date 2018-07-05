@@ -79,18 +79,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="collection.cs" />
     <Compile Include="InterfaceTestCases.cs" />
     <Compile Include="NotifyCollectionIndexTest.cs" />
-    <Compile Include="NotifyDictionaryTest.cs" />
-    <Compile Include="ObservableDictionaryTest.cs" />
-    <Compile Include="ObservableDictionaryTestInterface.cs" />
-    <Compile Include="ObservableListKeyedTestInterface.cs" />
-    <Compile Include="ObservableListTestInterface.cs" />
-    <Compile Include="ObservableListKeyedTest.cs" />
-    <Compile Include="NotifySortedListTest.cs" />
-    <Compile Include="ObservableCollectionAdapterTest.cs" />
-    <Compile Include="ObservableListTest.cs" />
+    <Compile Include="Standard\ObservableDictionaryTest.cs" />
+    <Compile Include="Standard\ObservableDictionaryTestInterface.cs" />
+    <Compile Include="Extended\ObservableListKeyedTestInterface.cs" />
+    <Compile Include="Standard\ObservableListTestInterface.cs" />
+    <Compile Include="Extended\ObservableListKeyedTest.cs" />
+    <Compile Include="Standard\ObservableSortedListTest.cs" />
+    <Compile Include="Extended\ObservableListAdapterTest.cs" />
+    <Compile Include="Standard\ObservableListTest.cs" />
+    <Compile Include="Standard\ObservableSortedListTestInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectionTestBase.cs" />
   </ItemGroup>
@@ -104,6 +103,7 @@
       <Name>Gstc.Collections.Observable</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

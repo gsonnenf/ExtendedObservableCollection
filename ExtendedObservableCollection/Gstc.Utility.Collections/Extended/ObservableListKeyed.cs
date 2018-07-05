@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Nonstandard {
+namespace Gstc.Collections.Observable.Extended {
 
 
     /// <summary>

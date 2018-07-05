@@ -1,16 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
+﻿using System;
 using AutoFixture;
 using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 
-namespace Gstc.Collections.Observable.Test {
+namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
-    public class NotifySortedListTest : CollectionTestBase<object,object> {
+    public class ObservableSortedListTest : CollectionTestBase<object,object> {
 
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),

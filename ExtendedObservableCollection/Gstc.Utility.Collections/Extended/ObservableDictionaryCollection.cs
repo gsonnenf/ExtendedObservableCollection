@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.unfinished {
+namespace Gstc.Collections.Observable.Extended {
 
 
     /// <summary>

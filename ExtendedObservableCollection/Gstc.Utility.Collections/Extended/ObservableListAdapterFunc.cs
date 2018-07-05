@@ -1,7 +1,7 @@
 ﻿using System;
 using Gstc.Collections.Observable.Interface;
 
-namespace Gstc.Collections.Observable.Nonstandard {
+namespace Gstc.Collections.Observable.Extended {
 
     /// <summary>
     /// This class is an implementation of the abstract class ObservableListAdapter with the

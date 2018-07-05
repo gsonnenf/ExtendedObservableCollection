@@ -4,7 +4,7 @@ using System.ComponentModel;
 using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Standard;
 
-namespace Gstc.Collections.Observable.Nonstandard {
+namespace Gstc.Collections.Observable.Extended {
     /// <summary>
     /// The Observable list adapter is a one-way synchronizer between a source observable list of type
     /// <TInput> and a destination observable list of <TOutput>. The method Convert(...) must be implemented

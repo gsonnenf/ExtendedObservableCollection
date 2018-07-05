@@ -26,6 +26,20 @@ namespace Gstc.Collections.Observable.Base {
         public bool ContainsKey(TKey key) => InternalDictionary.ContainsKey(key);
         public bool TryGetValue(TKey key, out TValue value) => InternalDictionary.TryGetValue(key, out value);
 
+        //Dictionary
+        object IDictionary.this[object key] {
+            get => ((IDictionary)InternalDictionary)[key];
+            set => this[(TKey)key] = (TValue)value;
+        }
+        void IDictionary.Add(object key, object value) => Add((TKey)key, (TValue)value);
+        void IDictionary.Remove(object key) => Remove((TKey)key);
+        bool IDictionary.Contains(object key) => InternalDictionary.ContainsKey((TKey)key);
+        bool IDictionary.IsFixedSize => ((IDictionary)InternalDictionary).IsFixedSize;
+        bool IDictionary.IsReadOnly => ((IDictionary)InternalDictionary).IsReadOnly;
+        ICollection IDictionary.Keys => ((IDictionary)InternalDictionary).Keys;
+        ICollection IDictionary.Values => ((IDictionary)InternalDictionary).Values;
+        IDictionaryEnumerator IDictionary.GetEnumerator() => ((IDictionary)InternalDictionary).GetEnumerator();
+
 
         //ICollection
         /*

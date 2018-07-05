@@ -13,7 +13,7 @@ namespace Gstc.Collections.Observable.Base {
         #region abstract methods
         protected abstract IList<TItem> InternalList { get; }
         public abstract TItem this[int index] { get; set; }
-        public abstract void Insert(int index, TItem item); //TODO: Make sure you did this one right
+        public abstract void Insert(int index, TItem item);
         public abstract void RemoveAt(int index);
         public abstract void Add(TItem item);
         public abstract void Clear();
