@@ -2,11 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Base {
     public abstract class BaseObservableSortedList<TKey,TValue> : 
+        
         NotifyDictionaryCollection<TKey,TValue>,
+        IObservableCollection,
+
         IDictionary<TKey, TValue>, ICollection<KeyValuePair<TKey, TValue>>, 
         IEnumerable<KeyValuePair<TKey, TValue>>, IDictionary, ICollection, IEnumerable {
 

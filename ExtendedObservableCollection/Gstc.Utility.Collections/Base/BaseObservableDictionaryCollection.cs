@@ -28,6 +28,7 @@ namespace Gstc.Collections.Observable.Base {
 
 
         //ICollection
+        /*
         void ICollection<TValue>.CopyTo(TValue[] array, int arrayIndex) => InternalCollection.CopyTo(array, arrayIndex);
         bool ICollection<TValue>.Contains(TValue item) => InternalCollection.Contains(item);
         bool ICollection<TValue>.IsReadOnly => InternalDictionary.IsReadOnly;
@@ -42,8 +43,7 @@ namespace Gstc.Collections.Observable.Base {
             }
             return false;
         }
-
- 
+        */
         //Key Value operations
         public ICollection<TKey> Keys => InternalDictionary.Keys;
         public ICollection<TValue> Values => InternalDictionary.Values;
@@ -56,5 +56,11 @@ namespace Gstc.Collections.Observable.Base {
         public IEnumerator<TValue> GetEnumerator() => InternalCollection.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => InternalDictionary.GetEnumerator();
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => InternalDictionary.GetEnumerator();
+
+        //ICollection
+        void ICollection.CopyTo(Array array, int arrayIndex) => ((ICollection)InternalDictionary).CopyTo(array, arrayIndex);
+        bool ICollection.IsSynchronized => ((ICollection)InternalDictionary).IsSynchronized;
+        object ICollection.SyncRoot => ((ICollection)InternalDictionary).SyncRoot;
+
     }
 }

@@ -13,16 +13,15 @@ namespace Gstc.Collections.Observable.Standard {
     /// <typeparam name="TItem"></typeparam>
     public class ObservableList<TItem> : BaseObservableList<TItem> {
 
-        private List<TItem> _list = new List<TItem>();
-
-        public ObservableList() {}
-
-        public ObservableList(List<TItem> list) {
-            List = list;
-        }
-
+        private List<TItem> _list;
         protected override IList<TItem> InternalList => _list;
 
+        //Constructors
+        public ObservableList() { _list = new List<TItem>(); }
+
+        public ObservableList(List<TItem> list) { List = list; }
+
+        //Properties
         public List<TItem> List {
             get => _list;
             set {
@@ -32,8 +31,7 @@ namespace Gstc.Collections.Observable.Standard {
             }
         }
 
-        #region Overrides
-
+        //Overrides
         public override TItem this[int index] {
             get => _list[index];
             set {
@@ -71,10 +69,8 @@ namespace Gstc.Collections.Observable.Standard {
 
         public override void Move(int oldIndex, int newIndex) {
             var removedItem = this[oldIndex];
-
             _list.RemoveAt(oldIndex);
             _list.Insert(newIndex, removedItem);
-
             OnPropertyChangedIndex();
             OnCollectionChangedMove(removedItem, oldIndex, newIndex);
         }
@@ -94,7 +90,5 @@ namespace Gstc.Collections.Observable.Standard {
             OnPropertyChangedCountAndIndex();
             OnCollectionChangedRemove(item, index);
         }
-
-        #endregion
     }
 }

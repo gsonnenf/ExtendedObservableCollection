@@ -1,8 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Gstc.Collections.Observable.Interface {
-    public interface IObservableCollection<TItem> : 
+    public interface IObservableCollection :
+        ICollection,
+        INotifyCollectionChanged,
+        INotifyPropertyChanged {
+        new int Count { get; }
+    }
+
+    public interface IObservableCollection<TItem> :
         ICollection<TItem>, 
-        INotifyCollectionChanged {}
+        IObservableCollection {
+        new int Count { get; }
+    }
 }

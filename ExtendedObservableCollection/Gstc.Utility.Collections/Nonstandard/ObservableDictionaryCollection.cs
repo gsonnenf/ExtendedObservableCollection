@@ -77,7 +77,6 @@ namespace Gstc.Collections.Observable.unfinished {
         }
 
         public override bool Remove(TKey key) {
-            OnPropertyChangedCountAndIndex();
             if (!_dictionary.ContainsKey(key)) return false;
             var item = _dictionary[key];
 

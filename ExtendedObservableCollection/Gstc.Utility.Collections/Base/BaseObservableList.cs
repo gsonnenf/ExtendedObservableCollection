@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Notify;
@@ -34,6 +35,11 @@ namespace Gstc.Collections.Observable.Base {
         bool ICollection<TItem>.IsReadOnly => InternalList.IsReadOnly;
         IEnumerator IEnumerable.GetEnumerator() => InternalList.GetEnumerator();
 
-       
+        //ICollection
+        void ICollection.CopyTo(Array array, int arrayIndex) => ((ICollection)InternalList).CopyTo(array, arrayIndex);
+        bool ICollection.IsSynchronized => ((ICollection)InternalList).IsSynchronized;
+        object ICollection.SyncRoot => ((ICollection)InternalList).SyncRoot;
+
+
     }
 }

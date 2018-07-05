@@ -4,7 +4,7 @@ using Gstc.Collections.Observable.Notify;
 
 namespace Gstc.Collections.Observable.Interface {
     public interface IObservableDictionaryCollection<TKey,TValue> : 
-        IObservableCollection<TValue>, 
+        IObservableCollection, 
         IObservableDictionary<TKey,TValue> {
 
     }

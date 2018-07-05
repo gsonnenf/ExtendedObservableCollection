@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class NotifySortedListTest : TestUtils<object,object> {
+    public class NotifySortedListTest : CollectionTestBase<object,object> {
 
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),

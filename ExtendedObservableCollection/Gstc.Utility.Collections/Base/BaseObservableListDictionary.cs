@@ -52,11 +52,15 @@ namespace Gstc.Collections.Observable.Base {
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) => InternalDictionary.CopyTo(array, arrayIndex); bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly => InternalDictionary.IsReadOnly;
 
         //Enumerator
-        public IEnumerator<TValue> GetEnumerator() => InternalList.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => InternalDictionary.GetEnumerator();
+        public IEnumerator<TValue> GetEnumerator() => InternalList.GetEnumerator();       
+        IEnumerator IEnumerable.GetEnumerator() => InternalList.GetEnumerator();
         IEnumerator<KeyValuePair<TKey, TValue>> IEnumerable<KeyValuePair<TKey, TValue>>.GetEnumerator() => InternalDictionary.GetEnumerator();
 
 
+        //ICollection
+        void ICollection.CopyTo(Array array, int arrayIndex) => ((ICollection)InternalList).CopyTo(array, arrayIndex);
+        bool ICollection.IsSynchronized => ((ICollection)InternalList).IsSynchronized;
+        object ICollection.SyncRoot => ((ICollection)InternalList).SyncRoot;
 
 
 

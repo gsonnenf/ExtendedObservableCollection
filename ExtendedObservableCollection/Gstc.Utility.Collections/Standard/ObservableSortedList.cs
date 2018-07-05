@@ -13,18 +13,9 @@ namespace Gstc.Collections.Observable.Standard {
     public class ObservableSortedList<TKey, TValue> : BaseObservableSortedList<TKey, TValue> {
        
         private SortedList<TKey, TValue> _sortedList;
+
         protected override SortedList<TKey, TValue> InternalSortedList => _sortedList;
 
-        //Constructors
-        public ObservableSortedList() {
-            _sortedList = new SortedList<TKey, TValue>();
-        }
-
-        public ObservableSortedList(SortedList<TKey, TValue> sortedList) {
-            SortedList = sortedList;
-        }
-        
-        //List
         public SortedList<TKey, TValue> SortedList {
             get => _sortedList;
             set {
@@ -34,6 +25,11 @@ namespace Gstc.Collections.Observable.Standard {
                 OnDictionaryReset();
             }
         }
+
+        //Constructors
+        public ObservableSortedList() {  _sortedList = new SortedList<TKey, TValue>();  }
+
+        public ObservableSortedList(SortedList<TKey, TValue> sortedList) { SortedList = sortedList;  }     
 
         // Overrides
         public override TValue this[TKey key] {
@@ -58,7 +54,6 @@ namespace Gstc.Collections.Observable.Standard {
             OnDictionaryChangedAdd(key, value);
         }
    
-
         public override void Clear() {
             //CheckReentrancy();
             _sortedList.Clear();
@@ -71,7 +66,6 @@ namespace Gstc.Collections.Observable.Standard {
             //CheckReentrancy();           
             var removedIndex = _sortedList.IndexOfKey(key);
             var removedValue = _sortedList[key];
-            //var index = ((ICollection)Dictionary)).
             if ( !_sortedList.Remove(key) ) return false;
             OnPropertyChangedCountAndIndex();
             OnCollectionChangedRemove(removedValue, removedIndex);

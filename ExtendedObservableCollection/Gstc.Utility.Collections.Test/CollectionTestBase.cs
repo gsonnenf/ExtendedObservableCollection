@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using AutoFixture;
-using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Notify;
 using Moq;
 using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
-    public class TestUtils<TKey, TItem> {
+    public class CollectionTestBase<TKey, TItem> {
 
         #region Default Test Tools
         protected static Fixture Fixture { get; } = new Fixture();
@@ -24,11 +25,18 @@ namespace Gstc.Collections.Observable.Test {
         protected TItem Item2 { get; set; }
         protected TItem Item3 { get; set; }
 
+
+        protected TKey Key1 { get; set; }
+        protected TKey Key2 { get; set; }
+        protected TKey Key3 { get; set; }
+
         protected TKey DefaultKey { get; set; }
-        protected TItem DefaultValue { get; set; }
         protected TKey UpdateKey { get; set; }
+        protected TItem DefaultValue { get; set; }
         protected TItem UpdateValue { get; set; }
 
+        
+        
         #endregion
 
         public void TestInit() {
@@ -38,13 +46,18 @@ namespace Gstc.Collections.Observable.Test {
             //Generalize mock data
             DefaultTestItem = Fixture.Create<TItem>();
             UpdateTestItem = Fixture.Create<TItem>();
+
             Item1 = Fixture.Create<TItem>();
             Item2 = Fixture.Create<TItem>();
             Item3 = Fixture.Create<TItem>();
 
+            Key1 = Fixture.Create<TKey>();
+            Key2 = Fixture.Create<TKey>();
+            Key3 = Fixture.Create<TKey>();
+
             DefaultKey = Fixture.Create<TKey>();
-            DefaultValue = Fixture.Create<TItem>();
             UpdateKey = Fixture.Create<TKey>();
+            DefaultValue = Fixture.Create<TItem>();
             UpdateValue = Fixture.Create<TItem>();
         }
 
@@ -57,13 +70,13 @@ namespace Gstc.Collections.Observable.Test {
             Assert.That(args.NewStartingIndex == -1);
         }
 
-        protected NotifyCollectionChangedEventHandler GenerateAssertCollectionEventAddOne(int index,TItem item) {
+        protected NotifyCollectionChangedEventHandler GenerateAssertCollectionEventAddOne(int index, TItem item) {
             return (sender, args) => {
                 Assert.That(args.Action, Is.EqualTo(NotifyCollectionChangedAction.Add));
                 Assert.That(args.OldStartingIndex == -1);
-                Assert.That(args.NewStartingIndex == index);               
+                Assert.That(args.NewStartingIndex == index);
                 Assert.That(args.OldItems, Is.Null);
-                Assert.That(args.NewItems[0], Is.EqualTo(item));              
+                Assert.That(args.NewItems[0], Is.EqualTo(item));
             };
         }
 
@@ -79,18 +92,16 @@ namespace Gstc.Collections.Observable.Test {
             };
         }
 
-        
-
         protected NotifyCollectionChangedEventHandler GenerateAssertCollectionEventRemoveOne(int index, TItem item) {
             return (sender, args) => {
                 Assert.That(args.Action, Is.EqualTo(NotifyCollectionChangedAction.Remove));
                 Assert.That(args.OldStartingIndex == index);
                 Assert.That(args.NewStartingIndex == -1);
-                Assert.That(args.OldItems[0], Is.EqualTo(item));              
+                Assert.That(args.OldItems[0], Is.EqualTo(item));
                 Assert.That(args.NewItems, Is.Null);
             };
         }
-#endregion
+        #endregion
 
         #region Dictionary Event Arg Tests
         protected void AssertDictionaryEventReset(object sender, NotifyDictionaryChangedEventArgs<TKey, TItem> args) {
@@ -122,10 +133,73 @@ namespace Gstc.Collections.Observable.Test {
         }
         #endregion
 
+
+
         protected void Log(object message) => Console.WriteLine(message);
 
-        public class MockEventClass : Mock<AssertEventClass> { }
+        #region Event Call Test
 
-        public class AssertEventClass { public virtual void Call(string obj) { } }
+
+        /// <summary>
+        /// Class for testing mock events for observable collections. Uses Moq framework to verify event are called.
+        /// </summary>
+        public class MockEventClass : Mock<AssertEventClass> {
+
+            private int _timesPropertyCalled = 0;
+            private int _timesCollectionCalled = 0;
+            private int _timesDictionaryCalled = 0;
+
+            public void AddNotifiersCollectionAndProperty(IObservableCollection obvList) {
+                //Sets up event testers
+                obvList.PropertyChanged += OnPropertyChanged;
+                obvList.CollectionChanged += OnCollectionChanged;
+            }
+
+            public void AddNotifiersDictionary(INotifyDictionaryChanged<string, TestItem> obvDict) {
+                //Sets up event testers
+                obvDict.DictionaryChanged += OnDictionaryChanged;
+
+            }
+
+            public void AssertMockNotifiersCollection(int timesPropertyCalled, int timesCollectionCalled) {
+                _timesPropertyCalled += timesPropertyCalled;
+                _timesCollectionCalled += timesCollectionCalled;
+                Verify(m => m.Call("PropertyChanged"), Times.Exactly(_timesPropertyCalled));
+                Verify(m => m.Call("CollectionChanged"), Times.Exactly(_timesCollectionCalled));
+            }
+
+            public void AssertMockNotifiersDictionary(int timesDictionaryCalled) {
+                _timesDictionaryCalled += timesDictionaryCalled;          
+                Verify(m => m.Call("DictionaryChanged"), Times.Exactly(_timesDictionaryCalled));
+            }
+
+            public void RemoveCollectionAndPropertyNotifiers(IObservableCollection obvList) {
+                obvList.PropertyChanged -= OnPropertyChanged;
+                obvList.CollectionChanged -= OnCollectionChanged;
+            }
+
+            public void RemoveDictionaryNotifiers(IObservableDictionary<string,TestItem> obvDict) {
+                obvDict.DictionaryChanged -= OnDictionaryChanged;              
+            }
+
+            private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+                => Object.Call("CollectionChanged");
+
+            private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+                => Object.Call("PropertyChanged");
+
+            private void OnDictionaryChanged(object sender, NotifyDictionaryChangedEventArgs<string, TestItem> e)
+                => Object.Call("DictionaryChanged");
+        }
+
+        /// <summary>
+        /// Basic class for override with Moq. Moq proxies the Call method and counts number of times called.
+        /// </summary>
+        public class AssertEventClass {
+            public virtual void Call(string obj) { }
+        }
+
+        #endregion
+
     }
 }

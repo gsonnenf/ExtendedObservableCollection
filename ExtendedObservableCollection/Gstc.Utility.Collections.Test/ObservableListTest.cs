@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class ObservableListTest : TestUtils<object, object> {
+    public class ObservableListTest : CollectionTestBase<object, object> {
 
         private ObservableList<object> ObvList { get; set; }
 

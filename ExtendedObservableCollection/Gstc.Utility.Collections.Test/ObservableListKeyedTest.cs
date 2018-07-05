@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class ObservableListKeyedTest : TestUtils<string, ObservableListKeyedTest.TestItemClass> {
+    public class ObservableListKeyedTest : CollectionTestBase<string, ObservableListKeyedTest.TestItemClass> {
 
         private ListKeyedImpl ObvKeyedList { get; set; }
 

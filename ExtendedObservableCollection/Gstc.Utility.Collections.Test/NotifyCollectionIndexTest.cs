@@ -9,7 +9,7 @@ using Gstc.Collections.Observable.Standard;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class NotifyCollectionIndexTest : TestUtils<object,object> {
+    public class NotifyCollectionIndexTest : CollectionTestBase<object,object> {
 
         private ObservableSortedList<object, object> ObvDictionary { get; set; }
 

@@ -27,14 +27,19 @@ namespace Gstc.Collections.Observable.Nonstandard {
     public abstract class ObservableListKeyed<TKey,TValue> : BaseObservableListDictionary<TKey, TValue> {
 
         //Backing list, and dictionary to store keyValuePairs for fast lookup
-        private List<TValue> _list = new List<TValue>();
+        private List<TValue> _list;
         private readonly Dictionary<TKey, TValue> _dictionary = new Dictionary<TKey, TValue>();
+
+        protected override IList<TValue> InternalList => _list;
+        protected override IDictionary<TKey, TValue> InternalDictionary => _dictionary;
 
 
         //Constructors
-        protected ObservableListKeyed() {}
+        protected ObservableListKeyed() { _list = new List<TValue>(); }
 
         protected ObservableListKeyed(List<TValue> list) { List = list;  }
+
+        //Properties
 
         /// <summary>
         /// This is the map between your object and its internal key. It must be overridden, or alternatively use the ObservableKeyedListFunc class,
@@ -70,21 +75,12 @@ namespace Gstc.Collections.Observable.Nonstandard {
             return item;
         }
 
-        #region override properties for inherentance
-
-        protected override IList<TValue> InternalList => _list;
-        protected override IDictionary<TKey, TValue> InternalDictionary => _dictionary;
-
-        #endregion
-
-        #region override Methods
-
+        //Override
         public override TValue this[int index] {
             get => InternalList[index];
             set {               
                 TValue item = value;
                 TKey key = GetKey(value);
-
                 if (_dictionary.ContainsKey(key)) {
                     TValue oldItem = _dictionary[key];
                     _dictionary[key] = item;
@@ -95,9 +91,11 @@ namespace Gstc.Collections.Observable.Nonstandard {
                 }
 
                 else {
+                    //TODO: Fix for cases of adding vs. replacing. Index or IndexAndProperty, change replaced or added
+                    
                     _dictionary[key] = item;
                     _list[index] = item;
-                    OnPropertyChangedCountAndIndex();
+                    OnPropertyChangedIndex();
                     OnCollectionChangedAdd(item, _list.IndexOf(item));
                     OnDictionaryChangedAdd(key, item);
                 }      
@@ -217,8 +215,5 @@ namespace Gstc.Collections.Observable.Nonstandard {
             OnCollectionChangedRemove(item, index);
             OnDictionaryRemove(key, item);
         }
-        #endregion
-
-       
     }
 }

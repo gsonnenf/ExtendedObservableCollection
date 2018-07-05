@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Gstc.Collections.Observable.Test {
 
     [TestFixture]
-    public class ObservableCollectionAdapterTest : TestUtils<object, string> {
+    public class ObservableCollectionAdapterTest : CollectionTestBase<object, string> {
         private BaseObservableList<string> TestBaseList { get; set; }
         private TestAdapterClass TestAdapter { get; set; }
       

@@ -8,12 +8,13 @@ using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class NotifyDictionaryTest : TestUtils<object,object> {
+    public class NotifyDictionaryTest : CollectionTestBase<object,object> {
       
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),
             Fixture.Create<string>()
         };
+
         private static object[] DefaultStaticValue { get; } = {
             null,
             Fixture.Create<object>(),
@@ -35,9 +36,7 @@ namespace Gstc.Collections.Observable.Test {
 
             ObvDictionary.DictionaryChanged += GenerateAssertDictionaryEventAddOne(DefaultKey, item);
             AddMockEventNotifiers();
-
-            ObvDictionary.Add(DefaultKey, item);
-            
+            ObvDictionary.Add(DefaultKey, item);          
             AssertMockEventNotifiers(2,1);
         }
 

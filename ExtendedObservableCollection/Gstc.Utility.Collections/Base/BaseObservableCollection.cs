@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Notify;
@@ -25,5 +26,11 @@ namespace Gstc.Collections.Observable.Base {
         // Enumerator
         public IEnumerator<TItem> GetEnumerator() => InternalCollection.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => InternalCollection.GetEnumerator();
+
+        //ICollection
+        int ICollection.Count => InternalCollection.Count;
+        void ICollection.CopyTo(Array array, int arrayIndex) => ((ICollection)InternalCollection).CopyTo(array, arrayIndex);
+        bool ICollection.IsSynchronized => ((ICollection)InternalCollection).IsSynchronized;
+        object ICollection.SyncRoot => ((ICollection)InternalCollection).SyncRoot;
     }
 }
