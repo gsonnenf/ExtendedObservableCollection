@@ -5,7 +5,7 @@
 
 ## OBSERVABLES
 
-The observable collections in this library implement INotifyCollectionChanged, INotifyPropertyChanged. The NotifyCollectionChanged generate NotifyCollectionChangedEventArgs that fully implements the NotifyCollectionChangedAction and supports multiple Adds in a single event. Example libraries, such as ParallelExtensionsExtras, often take a shortcut and only generate NotifyCollectionChangedAction.Reset events. 
+The observable collections in this library implement INotifyCollectionChanged and INotifyPropertyChanged. The INotifyCollectionChanged implementation generates NotifyCollectionChangedEventArgs that fully implements the NotifyCollectionChangedAction and supports multiple Adds in a single event. Example libraries, such as ParallelExtensionsExtras, often take a shortcut and only generate NotifyCollectionChangedAction.Reset events. 
 
 The observable dictionaries in this library implement a custom INotifyDictionaryChanged. INotifyDictionaryChanged is templated after NotifyCollectionChanged, but is used for Dictionary instead of Collection<>. Consequently, NotifyDictionaryChanged uses Keys instead of Indexes in its event args. Otherwise, the operations are analogous.
 
