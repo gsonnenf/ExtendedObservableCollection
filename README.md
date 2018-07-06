@@ -13,7 +13,7 @@ The observable dictionaries in this library implement a custom INotifyDictionary
 ## STANDARD COLLECTION CLASSES
  
 ### ObservableList< TItem >
- The ObservableList implements INotifyCollectionChanged and INotifyPropertyChanged and is a wrapper for a standard List<>. It triggers NotifyCollectionChanged and NotifyPropertyChanged events for List operation: Add, AddRanmge, Clear, Insert, Move, Remove, RemoveAt and this[]. It implements all interfaces of List and triggers notify events for interface methods when downcast.
+ The ObservableList implements INotifyCollectionChanged and INotifyPropertyChanged and is a wrapper for a standard List<>. It triggers NotifyCollectionChanged and NotifyPropertyChanged events for List operation: Add, AddRange, Clear, Insert, Move, Remove, RemoveAt and this[]. It implements all interfaces of List and triggers notify events for interface methods when downcast.
 
 ### ObservableDictionary< TKey, TValue > 
 The ObservableDictionary implements a INotifyDictionaryChanged and is a wrapper for a standard Dictionary<,>. It triggers NotifyDictionaryChanged events for the Dictionary operations: Add, Clear, Remove, and this[]. It implements all interfaces of Dictionary and triggers notify events for interface methods when downcast.
