@@ -11,12 +11,17 @@ The standard items should work somewhat similar to a .NET ObservableCollection. 
 ```csharp
 var myObvList = new ObservableList<string>();
 myObvList.CollectionChanged += (sender, args) => Console.Writeline("Collection has changed!");
-myObvList.Added += (sender, args) => Console.Writeline("First item added was: " + args.NewItems[0]);
+myObvList.Added += (sender, args) => Console.Writeline("First item in NewItems is: " + args.NewItems[0]);
 myObvList.Add("I am the first item.");
+
+//works with downcasting
+IList myIList = myObvList as IList;
+myIList.Add("I am a second item added to a downcast IList.");
 
 //Output:
 // Collection has changed!
-// First item added was: I am the first item.
+// First item in NewItems is: I am the first item.
+// First item in NewItems is: I am a second item added to a downcast IList.
 ```
 
 It can also be used with existing lists:
@@ -24,25 +29,23 @@ It can also be used with existing lists:
 ```csharp
 var myList = new List<string>() { "one","two","three" };
 
+//Wrapping a list
 var myObvList = new ObservableList<string>();
 myObvList.CollectionChanged += (sender, args) => Console.Writeline("Collection has changed!");
 myObvList.Reset += (sender, args) => Console.Writeline("Collection has been reset!");
 myObvList.List = myList;
 
+//Events after wrapping a list
 myObvList.Added += ()=> Console.Writeline("Item added: ");
 
 myObvList.Add("I will trigger an event!");
-
-IList downcastList = myObvList as IList;
-downCastList.Add("I will also trigger an event!");
-
 myList.Add("I will not trigger an event. It may be better to copy me into an observable list if this will happen.");
 
 //Output:
 // Collection has changed!
 // Collection has been reset!
 // Item added: I will trigger an event!
-// Item added: I will also trigger an event!
+
 ``` 
 
 # Longer Summary
