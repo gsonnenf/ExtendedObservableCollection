@@ -2,11 +2,11 @@
 
 ## What is it?
 
-In short library is an implementation of INotifyCollectionChanged, INotifyPropertyChanged and IList, ICollection, IDictionary that can serve as wrappers for your non-observable collections. Events are trigger even when downcast. This library also contains various useful utilities for syncronizing lists.
+In short  this library is an implementation of INotifyCollectionChanged, INotifyPropertyChanged combine with IList, ICollection, IDictionary,etc that can serve as wrappers for your non-observable collections. Events are trigger even when downcast. This library also contains various useful utilities for syncronizing lists.
 
 ## How do I get started?
 
-The standard items should work somewhat similar to a .NET ObservableCollection. First, add the nuget package or add a reference to your compiled code. 
+The standard items should work somewhat similar to a .NET ObservableCollection. First, add the nuget package or add a reference to your compiled code. The following example shows usage of an ObservableList<>:
 
 ```csharp
 var myObvList = new ObservableList<string>();
