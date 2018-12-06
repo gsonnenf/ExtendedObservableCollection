@@ -2,19 +2,17 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using Gstc.Collections.Observable.Interface;
-using Gstc.Collections.Observable.Standard;
 
 namespace Gstc.Collections.Observable.Extended {
     /// <summary>
     /// The Observable list adapter is a one-way synchronizer between a source observable list of type
-    /// <TInput> and a destination observable list of <TOutput>. The method Convert(...) must be implemented
+    /// TInput and a destination observable list of TOutput. The method Convert(...) must be implemented
     /// as an adapter between the source element and destination element. 
     /// 
     /// This class is intended to serve as a one-way map between a collection of models and a collection of
     /// ViewModels though can be used for arbitrary purpose. It is recommened the destination element should
     /// contain a reference to the source element and propogate changes to the destination element via
     /// INotifyPropertyChanged or direct mapping to the source. 
-
     /// </summary>
     /// <typeparam name="TInput">Source element type (e.g. Model class)</typeparam>
     /// <typeparam name="TOutput">Destination element type (e.g. ViewModel class</typeparam>

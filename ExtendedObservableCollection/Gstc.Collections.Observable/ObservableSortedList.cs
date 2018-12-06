@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Standard {
+namespace Gstc.Collections.Observable {
 
     /// <summary>
     /// This class is a wrapper for a sorted list that implements INotifyCollectionChanged and INotifyDictionaryChanged.

@@ -1,5 +1,4 @@
-﻿using Gstc.Collections.Observable.Standard;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test.Standard {
 

@@ -1,5 +1,4 @@
 ﻿using AutoFixture;
-using Gstc.Collections.Observable.Standard;
 using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test.Standard {

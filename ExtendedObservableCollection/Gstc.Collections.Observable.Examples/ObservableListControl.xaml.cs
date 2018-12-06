@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
 using Gstc.Collections.Observable;
-using Gstc.Collections.Observable.Standard;
 
 namespace Gstc.Collection.Observable.Examples {
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Standard {
+namespace Gstc.Collections.Observable {
 
     /// <summary>
     /// Observable dictionary can serve as a stand alone dictionary, or serve as an observable wrapper for a pre-existing dictionary.

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 

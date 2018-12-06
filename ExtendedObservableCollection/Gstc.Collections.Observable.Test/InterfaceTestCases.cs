@@ -6,7 +6,6 @@ using AutoFixture;
 using Gstc.Collections.Observable.Extended;
 using Gstc.Collections.Observable.Interface;
 using Gstc.Collections.Observable.Notify;
-using Gstc.Collections.Observable.Standard;
 using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {

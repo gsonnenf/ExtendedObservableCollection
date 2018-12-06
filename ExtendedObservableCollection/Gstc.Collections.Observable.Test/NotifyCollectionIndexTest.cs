@@ -1,7 +1,6 @@
 ﻿using AutoFixture;
 using Moq;
 using NUnit.Framework;
-using Gstc.Collections.Observable.Standard;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collections.Observable", "Gstc.Utility.Collections\Gstc.Collections.Observable.csproj", "{9B12917B-3860-474A-8A9F-30F89C2CEAE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collections.Observable", "Gstc.Collections.Observable\Gstc.Collections.Observable.csproj", "{9B12917B-3860-474A-8A9F-30F89C2CEAE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collections.Observable.Test", "Gstc.Utility.Collections.Test\Gstc.Collections.Observable.Test.csproj", "{E0F76C87-2255-4102-8350-2F50F6288184}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collections.Observable.Test", "Gstc.Collections.Observable.Test\Gstc.Collections.Observable.Test.csproj", "{E0F76C87-2255-4102-8350-2F50F6288184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collection.Observable.Examples", "Gstc.Collection.Observable.Examples\Gstc.Collection.Observable.Examples.csproj", "{5B2C012D-751C-4B9C-92BD-CB3DBA421845}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gstc.Collection.Observable.Examples", "Gstc.Collections.Observable.Examples\Gstc.Collection.Observable.Examples.csproj", "{5B2C012D-751C-4B9C-92BD-CB3DBA421845}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

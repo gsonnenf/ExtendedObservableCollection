@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoFixture;
-using Gstc.Collections.Observable.Standard;
 using Moq;
 using NUnit.Framework;
 

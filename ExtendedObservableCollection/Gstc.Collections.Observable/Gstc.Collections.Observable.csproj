@@ -64,15 +64,15 @@
     <Compile Include="Extended\ObservableListAdapterFunc.cs" />
     <Compile Include="Extended\ObservableListKeyed.cs" />
     <Compile Include="Extended\ObservableListKeyedFunc.cs" />
-    <Compile Include="Standard\ObservableList.cs" />
+    <Compile Include="ObservableList.cs" />
     <Compile Include="Notify\NotifyProperty.cs" />
     <Compile Include="Misc\RefObservableCollection.cs" />
     <Compile Include="Extended\ObservableListAdapter.cs" />
     <Compile Include="Misc\RefDictionary.cs" />
     <Compile Include="Misc\ObservableCollectionSync.cs" />
-    <Compile Include="Standard\ObservableDictionary.cs" />
+    <Compile Include="ObservableDictionary.cs" />
     <Compile Include="Base\BaseObservableListDictionary.cs" />
-    <Compile Include="Standard\ObservableSortedList.cs" />
+    <Compile Include="ObservableSortedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
