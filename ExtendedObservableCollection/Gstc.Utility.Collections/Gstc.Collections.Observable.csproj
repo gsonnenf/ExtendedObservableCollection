@@ -11,7 +11,7 @@
     <AssemblyName>Gstc.Collections.Observable</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Gstc.Collections.Observable.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,9 +54,9 @@
     <Compile Include="Notify\NotifyDictionary.cs" />
     <Compile Include="Notify\NotifyCollection.cs" />
     <Compile Include="Interface\IObservableCollection.cs" />
-    <Compile Include="misc\CollectionViewAdapter.cs" />
-    <Compile Include="misc\EnumeratorAdapter.cs" />
-    <Compile Include="misc\KeyedList.cs" />
+    <Compile Include="Misc\CollectionViewAdapter.cs" />
+    <Compile Include="Misc\EnumeratorAdapter.cs" />
+    <Compile Include="Misc\KeyedList.cs" />
     <Compile Include="Notify\NotifyDictionaryChangedEventArgs.cs" />
     <Compile Include="Notify\NotifyDictionaryChangedEventArgs_Generic.cs" />
     <Compile Include="Base\BaseObservableList.cs" />
@@ -65,16 +66,23 @@
     <Compile Include="Extended\ObservableListKeyedFunc.cs" />
     <Compile Include="Standard\ObservableList.cs" />
     <Compile Include="Notify\NotifyProperty.cs" />
-    <Compile Include="misc\RefObservableCollection.cs" />
+    <Compile Include="Misc\RefObservableCollection.cs" />
     <Compile Include="Extended\ObservableListAdapter.cs" />
-    <Compile Include="misc\RefDictionary.cs" />
-    <Compile Include="misc\ObservableCollectionSync.cs" />
+    <Compile Include="Misc\RefDictionary.cs" />
+    <Compile Include="Misc\ObservableCollectionSync.cs" />
     <Compile Include="Standard\ObservableDictionary.cs" />
     <Compile Include="Base\BaseObservableListDictionary.cs" />
     <Compile Include="Standard\ObservableSortedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Gstc.Collections.Observable.nuspec">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="nuget.exe" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -16,4 +16,5 @@ namespace Gstc.Collections.Observable.Interface {
         IObservableCollection {
         new int Count { get; }
     }
+
 }

@@ -15,7 +15,6 @@ namespace Gstc.Collection.Observable.Examples {
             DataContext = this;
 
             CustomerObservableList.List = Customer.GenerateCustomerList();
-
             CustomerObservableList.CollectionChanged += (sender, args) => {
                 string message = "\nCollection Changed:";
                              
