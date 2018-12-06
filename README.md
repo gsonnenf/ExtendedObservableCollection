@@ -1,5 +1,53 @@
 # ExtendedObservableCollection
- This library contains a set of classes for making your Lists, Dictionaries and other Collections observable. The Observable Collections contained in this library can wrap existing collections or can be used on their own, generating their own backing collection. The library attempts to implement all interfaces of its backing collections and generate events for interface method calls when downcast. The library has a comprehensive unit test which tests the ObservableCollection and its interfaces.
+
+## What is it?
+
+In short library is an implementation of INotifyCollectionChanged, INotifyPropertyChanged and IList, ICollection, IDictionary that can serve as wrappers for your non-observable collections. Events are trigger even when downcast. This library also contains various useful utilities for syncronizing lists.
+
+## How do I get started?
+
+The standard items should work somewhat similar to a .NET ObservableCollection. First, add the nuget package or add a reference to your compiled code. 
+
+```csharp
+var myObvList = new ObservableList<string>();
+myObvList.CollectionChanged += (sender, args) => Console.Writeline("Collection has changed!");
+myObvList.Added += (sender, args) => Console.Writeline("First item added was: " + args.NewItems[0]);
+myObvList.Add("I am the first item.");
+
+//Output:
+// Collection has changed!
+// First item added was: I am the first item.
+```
+
+It can also be used with existing lists:
+
+```csharp
+var myList = new List<string>() { "one","two","three" };
+
+var myObvList = new ObservableList<string>();
+myObvList.CollectionChanged += (sender, args) => Console.Writeline("Collection has changed!");
+myObvList.Reset += (sender, args) => Console.Writeline("Collection has been reset!");
+myObvList.List = myList;
+
+myObvList.Added += ()=> Console.Writeline("Item added: ");
+
+myObvList.Add("I will trigger an event!");
+
+IList downcastList = myObvList as IList;
+downCastList.Add("I will also trigger an event!");
+
+myList.Add("I will not trigger an event. It may be better to copy me into an observable list if this will happen.");
+
+//Output:
+// Collection has changed!
+// Collection has been reset!
+// Item added: I will trigger an event!
+// Item added: I will also trigger an event!
+``` 
+
+# Longer Summary
+
+This library contains a set of classes for making your Lists, Dictionaries and other Collections observable. The Observable Collections contained in this library can wrap existing collections or can be used on their own, generating their own backing collection. The library attempts to implement all interfaces of its backing collections and generate events for interface method calls when downcast. The library has a comprehensive unit test which tests the ObservableCollection and its interfaces.
 
  This library also includes utility classes including a synchronization observable collection which can synchronize an observable list of viewmodels to a source list of models.
 
