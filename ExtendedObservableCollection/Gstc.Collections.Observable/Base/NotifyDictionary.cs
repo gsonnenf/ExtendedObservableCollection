@@ -1,8 +1,6 @@
-﻿using Gstc.Collections.Observable.Base;
+﻿namespace Gstc.Collections.Observable.Base {
 
-namespace Gstc.Collections.Observable.Notify {
-
-    public abstract class NotifyDictionary<TKey,TValue> : 
+    internal abstract class NotifyDictionary<TKey,TValue> : 
         NotifyProperty, 
         INotifyDictionaryChanged<TKey,TValue> {
 

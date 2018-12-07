@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Gstc.Collections.Observable.Base;
 
-namespace Gstc.Collections.Observable.Notify {
+namespace Gstc.Collections.Observable.Base {
     public class NotifyDictionaryChangedEventArgs<TKey,TValue> : NotifyDictionaryChangedEventArgs {
 
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action) : base(action) { }

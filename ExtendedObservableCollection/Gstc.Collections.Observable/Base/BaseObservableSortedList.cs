@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Gstc.Collections.Observable.Interface;
-using Gstc.Collections.Observable.Notify;
+using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
     public abstract class BaseObservableSortedList<TKey,TValue> : 

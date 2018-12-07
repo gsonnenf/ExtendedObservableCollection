@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Gstc.Collections.Observable.Interface;
+using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Extended {
     /// <summary>

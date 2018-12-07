@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using AutoFixture;
+using Gstc.Collections.Observable.Base;
 using Gstc.Collections.Observable.Extended;
-using Gstc.Collections.Observable.Notify;
 using Moq;
 using NUnit.Framework;
 

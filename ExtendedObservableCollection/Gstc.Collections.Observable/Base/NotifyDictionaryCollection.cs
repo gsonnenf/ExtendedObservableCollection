@@ -1,9 +1,5 @@
-﻿using System.Collections.Specialized;
-using Gstc.Collections.Observable.Base;
-using Gstc.Collections.Observable.Interface;
-
-namespace Gstc.Collections.Observable.Notify {
-    public abstract class NotifyDictionaryCollection<TKey,TValue> : 
+﻿namespace Gstc.Collections.Observable.Base {
+    internal abstract class NotifyDictionaryCollection<TKey,TValue> : 
         NotifyCollection, 
         INotifyDictionaryChanged<TKey, TValue>
     {

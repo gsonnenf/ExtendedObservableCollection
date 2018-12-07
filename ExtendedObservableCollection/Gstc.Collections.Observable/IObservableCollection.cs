@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace Gstc.Collections.Observable.Interface {
+namespace Gstc.Collections.Observable {
     public interface IObservableCollection :
         ICollection,
         INotifyCollectionChanged,

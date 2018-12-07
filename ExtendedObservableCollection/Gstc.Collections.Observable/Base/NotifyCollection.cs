@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
 
-namespace Gstc.Collections.Observable.Notify {
-    public abstract class NotifyCollection : 
+namespace Gstc.Collections.Observable.Base {
+
+
+    internal abstract class NotifyCollection : 
         NotifyProperty, 
         INotifyCollectionChanged {
-        
-        #region INotifyCollectionChanged
+
+        #region Events
         /// <summary>
         /// Triggers events on any change of collection. 
         /// </summary>
@@ -32,8 +34,10 @@ namespace Gstc.Collections.Observable.Notify {
         /// Triggers events when an the list has changed substantially such as a Clear(). 
         /// </summary>
         public event NotifyCollectionChangedEventHandler Reset;
-    
-        protected void OnCollectionChangedReset() {
+        #endregion
+
+        #region Methods
+        internal void OnCollectionChangedReset() {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -41,7 +45,7 @@ namespace Gstc.Collections.Observable.Notify {
             }
         }
 
-        protected void OnCollectionChangedAdd(object value, int index) {
+        internal void OnCollectionChangedAdd(object value, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, value, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs); 
@@ -49,7 +53,7 @@ namespace Gstc.Collections.Observable.Notify {
             }
         }
 
-        protected void OnCollectionChangedAddMany(IList valueList, int index) {
+        internal void OnCollectionChangedAddMany(IList valueList, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, valueList, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -57,23 +61,23 @@ namespace Gstc.Collections.Observable.Notify {
             }
         }
 
-        protected void OnCollectionChangedRemove(object value, int index) {
+        internal void OnCollectionChangedRemove(object value, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, value, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
                 Removed?.Invoke(this, eventArgs);
             }
         }
-        
-        protected void OnCollectionChangedMove(object value, int index, int oldIndex) {
+
+        internal void OnCollectionChangedMove(object value, int index, int oldIndex) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, value, index, oldIndex);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
                 Moved?.Invoke(this, eventArgs);
             }
         }
-     
-        protected void OnCollectionChangedReplace(object oldValue, object newValue, int index) {
+
+        internal void OnCollectionChangedReplace(object oldValue, object newValue, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, newValue, oldValue, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);

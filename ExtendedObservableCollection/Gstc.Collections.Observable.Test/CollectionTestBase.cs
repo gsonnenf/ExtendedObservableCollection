@@ -2,8 +2,8 @@
 using System.Collections.Specialized;
 using System.ComponentModel;
 using AutoFixture;
-using Gstc.Collections.Observable.Interface;
-using Gstc.Collections.Observable.Notify;
+using Gstc.Collections.Observable.Base;
+using Gstc.Collections.Observable;
 using Moq;
 using NUnit.Framework;
 

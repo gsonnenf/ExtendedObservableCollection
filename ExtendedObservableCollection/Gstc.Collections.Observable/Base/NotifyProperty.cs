@@ -1,23 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Gstc.Collections.Observable.Notify {
-    public abstract class NotifyProperty : INotifyPropertyChanged {
+namespace Gstc.Collections.Observable.Base {
+
+    internal abstract class NotifyProperty : INotifyPropertyChanged {
         protected const string CountString = "Count";
         protected const string IndexerName = "Item[]";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
+        internal virtual void OnPropertyChanged(PropertyChangedEventArgs e) => PropertyChanged?.Invoke(this, e);
 
-        protected void OnPropertyChanged(string propertyName) => OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        internal void OnPropertyChanged(string propertyName) => OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
 
-        protected void OnPropertyChangedCountAndIndex() {
+        internal void OnPropertyChangedCountAndIndex() {
             OnPropertyChanged(CountString);
             OnPropertyChanged(IndexerName);
         }
 
-        protected void OnPropertyChangedIndex() {
+        internal void OnPropertyChangedIndex() {
             OnPropertyChanged(IndexerName);
         }
 
@@ -31,7 +32,7 @@ namespace Gstc.Collections.Observable.Notify {
         }
 
         //TODO: Add Monitor for Collection Changed and Dictionary Changed
-        protected void CheckReentrancy() {
+        internal void CheckReentrancy() {
             if (!_monitor.Busy) return;
             //if ((CollectionChanged == null) || (CollectionChanged.GetInvocationList().Length <= 1)) return;
             //throw new InvalidOperationException("ObservableCollectionReentrancyNotAllowed");
