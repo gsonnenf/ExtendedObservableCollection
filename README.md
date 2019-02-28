@@ -1,5 +1,5 @@
 # ExtendedObservableCollection
-
+![alt text](https://user-images.githubusercontent.com/686792/53543486-0e638800-3ae0-11e9-9566-6d2f18a28e61.jpg)
 ### What is it?
 
 In short  this library is an implementation of INotifyCollectionChanged, INotifyPropertyChanged combine with IList, ICollection, IDictionary,etc that can serve as wrappers for your non-observable collections. Events are trigger even when downcast. This library also contains various useful utilities for syncronizing lists.
