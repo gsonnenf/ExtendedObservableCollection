@@ -37,7 +37,7 @@ namespace Gstc.Collections.Observable.Test.Extended {
         public void DictionaryGeneric() => _testCases.DictionaryGenericTest(Observable);
 
         [Test]
-        public void ListInterface() => _testCases.ListTest(Observable);
+        public void ListInterface() => _testCases.ListGenericTest(Observable);
 
     }
 }

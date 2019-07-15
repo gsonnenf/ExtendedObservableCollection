@@ -105,7 +105,10 @@ namespace Gstc.Collections.Observable.Test {
 
         }
 
-        public void ListTest(IList<TestItem> list) {
+
+
+
+        public void ListGenericTest(IList<TestItem> list) {
 
             Assert.IsNotNull(list as IObservableCollection);
 
@@ -133,6 +136,36 @@ namespace Gstc.Collections.Observable.Test {
             list.RemoveAt(0);
             Assert.AreEqual(Item2, list[0]);
             MockEvent.AssertMockNotifiersCollection(2, 1);
+        }
+
+        public void ListTest(IList list) {
+            Assert.IsNotNull(list as IObservableCollection);
+
+            MockEvent.AddNotifiersCollectionAndProperty(list as IObservableCollection);
+
+            //Index Test
+            list.Add(Item1);
+            Assert.AreEqual(Item1, list[0]);
+            MockEvent.AssertMockNotifiersCollection(2, 1);
+
+            list[0] = Item2;
+            Assert.AreEqual(Item2, list[0]);
+            MockEvent.AssertMockNotifiersCollection(1, 1);
+
+            //Index of test
+            Assert.AreEqual(0, list.IndexOf(Item2));
+
+            //Insert(,)
+            list.Insert(0, Item3);
+            Assert.AreEqual(Item3, list[0]);
+            MockEvent.AssertMockNotifiersCollection(2, 1);
+
+
+            //RemoveAt()
+            list.RemoveAt(0);
+            Assert.AreEqual(Item2, list[0]);
+            MockEvent.AssertMockNotifiersCollection(2, 1);
+
         }
 
         public void DictionaryTest(IDictionary dictionary) {

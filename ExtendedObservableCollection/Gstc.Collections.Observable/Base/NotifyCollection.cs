@@ -3,7 +3,6 @@ using System.Collections.Specialized;
 
 namespace Gstc.Collections.Observable.Base {
 
-
     public abstract class NotifyCollection : 
         NotifyProperty, 
         INotifyCollectionChanged {

@@ -18,9 +18,18 @@ namespace Gstc.Collections.Observable.Extended {
     /// <typeparam name="TOutput">Destination element type (e.g. ViewModel class</typeparam>
     public abstract class ObservableListAdapter<TInput, TOutput> : ObservableList<TOutput> {
 
-        //Conversion method for 
+        /// <summary>
+        /// Method for converting an item of type TInput to TOutput.
+        /// </summary>
+        /// <param name="item">The source TInput Item.</param>
+        /// <returns>An output item type.</returns>
         public abstract TOutput Convert(TInput item);
 
+        /// <summary>
+        /// Method for converting an item of type TOuput back to its TInput type.
+        /// </summary>
+        /// <param name="item">The ouput item to be converted back to its original type.</param>
+        /// <returns>The source item type.</returns>
         public abstract TInput Convert(TOutput item);
 
         private IObservableCollection<TInput> _sourceCollection;
@@ -36,6 +45,9 @@ namespace Gstc.Collections.Observable.Extended {
             SourceCollection = sourceCollection;
         }
 
+        /// <summary>
+        /// A collection that implements IObservableCollection that the Adapter can watch.
+        /// </summary>
         public IObservableCollection<TInput> SourceCollection {
             get => _sourceCollection;
             set {
