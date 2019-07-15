@@ -32,12 +32,11 @@ namespace Gstc.Collections.Observable.Base {
         void IList.Remove(object value) => Remove((TItem)value);
 
         bool IList.IsReadOnly => InternalList.IsReadOnly;
-        bool IList.IsFixedSize => throw new NotImplementedException("This is not supported.");
+        bool IList.IsFixedSize => false;
         object IList.this[int index] {
             get => this[index];
             set => this[index] = (TItem)value; }
         #endregion
-
 
         TItem IList<TItem>.this[int index] {
             get => this[index];

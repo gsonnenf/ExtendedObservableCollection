@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Gstc.Collections.Observable</id>
-    <version>0.1.2-alpha</version>
+    <version>0.1.4-alpha</version>
     <title>Extended Observable Collection Library</title>
     <authors>Greg Sonnenfeld</authors>
     <owners>Greg Sonnenfeld</owners>
@@ -14,4 +14,9 @@
     <copyright>Greg Sonnenfeld Copyright 2019</copyright>
     <tags>ObservableCollection Observable ObservableList Collections</tags>
   </metadata>
+  <files>
+    <file src="bin\Debug\*.*" target="lib\net35-client\Debug"></file>
+    <file src="bin\Release\*.*" target="lib\net35-client\Release"></file>
+  </files>
+  
 </package>
