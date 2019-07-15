@@ -5,7 +5,7 @@ using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
 
-    public abstract class BaseObservableList<TItem> : 
+    public abstract class BaseObservableList<TItem> :
         NotifyCollection,
         IObservableList<TItem> {
 
@@ -18,7 +18,26 @@ namespace Gstc.Collections.Observable.Base {
         public abstract void Clear();
         public abstract bool Remove(TItem item);
         public abstract void Move(int oldIndex, int newIndex);
+
         #endregion
+
+
+        #region IList
+
+        int IList.Add(object value) { Add((TItem) value); return Count - 1; }
+
+        bool IList.Contains(object value) => Contains((TItem)value);
+        int IList.IndexOf(object value) => IndexOf((TItem)value);
+        void IList.Insert(int index, object value) => Insert(index, (TItem)value);
+        void IList.Remove(object value) => Remove((TItem)value);
+
+        bool IList.IsReadOnly => InternalList.IsReadOnly;
+        bool IList.IsFixedSize => throw new NotImplementedException("This is not supported.");
+        object IList.this[int index] {
+            get => this[index];
+            set => this[index] = (TItem)value; }
+        #endregion
+
 
         TItem IList<TItem>.this[int index] {
             get => this[index];
@@ -36,9 +55,12 @@ namespace Gstc.Collections.Observable.Base {
 
         //ICollection
         void ICollection.CopyTo(Array array, int arrayIndex) => ((ICollection)InternalList).CopyTo(array, arrayIndex);
+
+
+
         bool ICollection.IsSynchronized => ((ICollection)InternalList).IsSynchronized;
         object ICollection.SyncRoot => ((ICollection)InternalList).SyncRoot;
 
-
+     
     }
 }

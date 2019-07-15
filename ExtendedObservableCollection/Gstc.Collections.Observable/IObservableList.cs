@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -10,7 +11,8 @@ namespace Gstc.Collections.Observable {
     /// <typeparam name="TItem"></typeparam>
     public interface IObservableList<TItem> :
         IObservableCollection<TItem>,
-        IList<TItem> {
+        IList<TItem>,
+        IList { 
        
     }
 }

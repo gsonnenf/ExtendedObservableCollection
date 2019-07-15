@@ -79,5 +79,22 @@ namespace Gstc.Collections.Observable.Base {
 
 
 
+
+
+
+
+
+        //IList
+        public bool IsReadOnly => throw new NotImplementedException();
+
+        public bool IsFixedSize => throw new NotImplementedException();
+
+        object IList.this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        int IList.Add(object value) => throw new NotImplementedException();
+        bool IList.Contains(object value) => throw new NotImplementedException();
+        int IList.IndexOf(object value) => throw new NotImplementedException();
+        void IList.Insert(int index, object value) => throw new NotImplementedException();
+        void IList.Remove(object value) => throw new NotImplementedException();
+
     }
 }

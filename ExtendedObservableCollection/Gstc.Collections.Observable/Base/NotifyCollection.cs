@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 namespace Gstc.Collections.Observable.Base {
 
 
-    internal abstract class NotifyCollection : 
+    public abstract class NotifyCollection : 
         NotifyProperty, 
         INotifyCollectionChanged {
 

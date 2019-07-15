@@ -1,6 +1,6 @@
 ﻿namespace Gstc.Collections.Observable.Base {
 
-    internal abstract class NotifyDictionary<TKey,TValue> : 
+    public abstract class NotifyDictionary<TKey,TValue> : 
         NotifyProperty, 
         INotifyDictionaryChanged<TKey,TValue> {
 

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Gstc.Collections.Observable.Base {
 
-    internal abstract class NotifyProperty : INotifyPropertyChanged {
+    public abstract class NotifyProperty : INotifyPropertyChanged {
         protected const string CountString = "Count";
         protected const string IndexerName = "Item[]";
 
