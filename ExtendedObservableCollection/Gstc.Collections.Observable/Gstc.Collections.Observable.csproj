@@ -41,6 +41,10 @@
   <ItemGroup>
     <Compile Include="Base\BaseObservableSortedList.cs" />
     <Compile Include="Base\INotifyListChanged.cs" />
+    <Compile Include="Extended\ObservableListSyncFunc.cs" />
+    <Compile Include="Extended\ObservableListSync.cs" />
+    <Compile Include="Extended\INotifyPropertySyncChanged.cs" />
+    <Compile Include="Extended\PropertySyncNotifier.cs" />
     <Compile Include="IObservableDictionary.cs" />
     <Compile Include="IObservableDictionaryCollection.cs" />
     <Compile Include="Base\BaseObservableCollection.cs" />

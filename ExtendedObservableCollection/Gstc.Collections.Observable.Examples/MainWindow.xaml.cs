@@ -7,7 +7,11 @@ namespace Gstc.Collection.Observable.Examples {
 
         public MainWindow() {
             InitializeComponent();
+
+           
         }
+
+
 
 
     }

@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="TestModel.cs" />
+    <Compile Include="TestViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObservableListSyncControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObservableDictionaryControl.xaml.cs">
@@ -91,6 +98,9 @@
     </Compile>
     <Compile Include="ObservableListControl.xaml.cs">
       <DependentUpon>ObservableListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObservableListSyncControl.xaml.cs">
+      <DependentUpon>ObservableListSyncControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObservableListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

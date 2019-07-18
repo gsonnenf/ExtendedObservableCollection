@@ -14,6 +14,9 @@
             <TabItem Header="Observable List Control">
                 <local:ObservableListControl></local:ObservableListControl>
             </TabItem>
+            <TabItem Header="Observable List Sync">
+                <local:ObservableListSyncControl x:Name="ObvListSync"></local:ObservableListSyncControl>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
