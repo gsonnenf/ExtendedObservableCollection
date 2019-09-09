@@ -3,6 +3,12 @@
   <img src="https://user-images.githubusercontent.com/686792/53543486-0e638800-3ae0-11e9-9566-6d2f18a28e61.jpg" height="350">
 </p>
 
+### New Version
+Observable List and List Synchronizers are being updated here:
+https://github.com/gsonnenf/Gstc.Collections.ObservableLists
+
+That section of the code has been moved and is being updated in that repo. The Dictionary Methods and other uncommon lists will eventually be moved to their own library as well.
+
 ### What is it?
 
 In short  this library is an implementation of INotifyCollectionChanged, INotifyPropertyChanged combine with IList, ICollection, IDictionary,etc that can serve as wrappers for your non-observable collections. Events are trigger even when downcast. This library also contains various useful utilities for syncronizing lists.
