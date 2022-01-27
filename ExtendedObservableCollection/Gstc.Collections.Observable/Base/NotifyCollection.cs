@@ -36,7 +36,7 @@ namespace Gstc.Collections.Observable.Base {
         #endregion
 
         #region Methods
-        internal void OnCollectionChangedReset() {
+        protected void OnCollectionChangedReset() {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -44,7 +44,7 @@ namespace Gstc.Collections.Observable.Base {
             }
         }
 
-        internal void OnCollectionChangedAdd(object value, int index) {
+        protected void OnCollectionChangedAdd(object value, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, value, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs); 
@@ -52,7 +52,7 @@ namespace Gstc.Collections.Observable.Base {
             }
         }
 
-        internal void OnCollectionChangedAddMany(IList valueList, int index) {
+        protected void OnCollectionChangedAddMany(IList valueList, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, valueList, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -60,7 +60,7 @@ namespace Gstc.Collections.Observable.Base {
             }
         }
 
-        internal void OnCollectionChangedRemove(object value, int index) {
+        protected void OnCollectionChangedRemove(object value, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, value, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -68,7 +68,7 @@ namespace Gstc.Collections.Observable.Base {
             }
         }
 
-        internal void OnCollectionChangedMove(object value, int index, int oldIndex) {
+        protected void OnCollectionChangedMove(object value, int index, int oldIndex) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, value, index, oldIndex);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
@@ -76,7 +76,7 @@ namespace Gstc.Collections.Observable.Base {
             }
         }
 
-        internal void OnCollectionChangedReplace(object oldValue, object newValue, int index) {
+        protected void OnCollectionChangedReplace(object oldValue, object newValue, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, newValue, oldValue, index);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
