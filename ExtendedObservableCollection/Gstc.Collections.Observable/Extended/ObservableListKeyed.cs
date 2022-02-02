@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Gstc.Collections.Observable.Base;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable.Base;
 
 namespace Gstc.Collections.Observable.Extended {
 
@@ -24,7 +24,7 @@ namespace Gstc.Collections.Observable.Extended {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public abstract class ObservableListKeyed<TKey,TValue> : BaseObservableListDictionary<TKey, TValue> {
+    public abstract class ObservableListKeyed<TKey, TValue> : BaseObservableListDictionary<TKey, TValue> {
 
         //Backing list, and dictionary to store keyValuePairs for fast lookup
         private List<TValue> _list;
@@ -37,7 +37,7 @@ namespace Gstc.Collections.Observable.Extended {
         //Constructors
         protected ObservableListKeyed() { _list = new List<TValue>(); }
 
-        protected ObservableListKeyed(List<TValue> list) { List = list;  }
+        protected ObservableListKeyed(List<TValue> list) { List = list; }
 
         //Properties
 
@@ -49,7 +49,7 @@ namespace Gstc.Collections.Observable.Extended {
         /// <returns></returns>
         public abstract TKey GetKey(TValue item);
 
-        
+
         /// <summary>
         /// Sets the internal list the ListKeyed is bound too.
         /// </summary>
@@ -58,13 +58,13 @@ namespace Gstc.Collections.Observable.Extended {
             set {
                 _list = value;
                 _dictionary.Clear();
-                foreach (var element in _list)   _dictionary.Add(GetKey(element),element);
+                foreach (var element in _list) _dictionary.Add(GetKey(element), element);
                 OnPropertyChangedCountAndIndex();
                 OnCollectionChangedReset();
                 OnDictionaryReset();
             }
         }
-        
+
         /// <summary>
         /// Returns the internal dictionary that is used to track keys on the list.
         /// </summary>
@@ -78,7 +78,7 @@ namespace Gstc.Collections.Observable.Extended {
         //Override
         public override TValue this[int index] {
             get => InternalList[index];
-            set {               
+            set {
                 TValue item = value;
                 TKey key = GetKey(value);
                 if (_dictionary.ContainsKey(key)) {
@@ -87,18 +87,16 @@ namespace Gstc.Collections.Observable.Extended {
                     _list[index] = item;
                     OnPropertyChangedIndex();
                     OnCollectionChangedReplace(oldItem, item, index);
-                    OnDictionaryReplace(key,oldItem,item);                    
-                }
-
-                else {
+                    OnDictionaryReplace(key, oldItem, item);
+                } else {
                     //TODO: Fix for cases of adding vs. replacing. Index or IndexAndProperty, change replaced or added
-                    
+
                     _dictionary[key] = item;
                     _list[index] = item;
                     OnPropertyChangedIndex();
                     OnCollectionChangedAdd(item, _list.IndexOf(item));
                     OnDictionaryChangedAdd(key, item);
-                }      
+                }
             }
         }
 
@@ -195,8 +193,8 @@ namespace Gstc.Collections.Observable.Extended {
             var index = _list.IndexOf(item);
 
             if (index == -1) return false;
-            var key = GetKey(item);          
-            _list.RemoveAt(index);        
+            var key = GetKey(item);
+            _list.RemoveAt(index);
             _dictionary.Remove(key);
 
             OnPropertyChangedCountAndIndex();

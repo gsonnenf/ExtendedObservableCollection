@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collection.Observable.Examples {
 
@@ -8,7 +7,7 @@ namespace Gstc.Collection.Observable.Examples {
         public MainWindow() {
             InitializeComponent();
 
-           
+
         }
 
 

@@ -1,8 +1,7 @@
 ﻿namespace Gstc.Collections.Observable.Base {
-    public abstract class NotifyDictionaryCollection<TKey,TValue> : 
-        NotifyCollection, 
-        INotifyDictionaryChanged<TKey, TValue>
-    {
+    public abstract class NotifyDictionaryCollection<TKey, TValue> :
+        NotifyCollection,
+        INotifyDictionaryChanged<TKey, TValue> {
 
         public event NotifyDictionaryChangedEventHandler<TKey, TValue> DictionaryChanged;
 

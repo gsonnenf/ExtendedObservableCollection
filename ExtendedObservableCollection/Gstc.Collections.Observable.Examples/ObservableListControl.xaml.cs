@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-using Gstc.Collections.Observable;
+﻿using Gstc.Collections.Observable;
+using System.Windows.Controls;
 
 namespace Gstc.Collection.Observable.Examples {
     /// <summary>
@@ -16,7 +16,7 @@ namespace Gstc.Collection.Observable.Examples {
             CustomerObservableList.List = Customer.GenerateCustomerList();
             CustomerObservableList.CollectionChanged += (sender, args) => {
                 string message = "\nCollection Changed:";
-                             
+
                 if (args.NewItems != null)
                     foreach (Customer customer in args.NewItems)
                         message += ("\nCustomer Added: " + customer.FirstName + " " + customer.LastName);
@@ -28,7 +28,7 @@ namespace Gstc.Collection.Observable.Examples {
                 EventTextBox.Text = message + "\n\n";
             };
         }
-         
+
         private void Button_Click_AddRange(object sender, System.Windows.RoutedEventArgs e) {
             CustomerObservableList.AddRange(Customer.GenerateCustomerList());
         }

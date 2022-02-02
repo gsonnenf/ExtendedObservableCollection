@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class BaseObservableDictionaryCollection<TKey, TValue> : 
-        NotifyDictionaryCollection<TKey, TValue>, 
-        IObservableDictionaryCollection<TKey,TValue> {
+    public abstract class BaseObservableDictionaryCollection<TKey, TValue> :
+        NotifyDictionaryCollection<TKey, TValue>,
+        IObservableDictionaryCollection<TKey, TValue> {
 
-       //internal collections
-        protected abstract ICollection<TValue> InternalCollection { get; }            
+        //internal collections
+        protected abstract ICollection<TValue> InternalCollection { get; }
         protected abstract IDictionary<TKey, TValue> InternalDictionary { get; }
 
         //Abstract methods
-        public abstract TValue this[TKey key] { get; set; }     
+        public abstract TValue this[TKey key] { get; set; }
         public abstract void Add(TKey key, TValue value);
         public abstract bool Remove(TKey key);
         public abstract void Clear();
@@ -64,7 +63,7 @@ namespace Gstc.Collections.Observable.Base {
         bool ICollection<KeyValuePair<TKey, TValue>>.Remove(KeyValuePair<TKey, TValue> item) => Remove(item.Key);
         bool ICollection<KeyValuePair<TKey, TValue>>.Contains(KeyValuePair<TKey, TValue> item) => InternalDictionary.Contains(item);
         void ICollection<KeyValuePair<TKey, TValue>>.CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) => InternalDictionary.CopyTo(array, arrayIndex); bool ICollection<KeyValuePair<TKey, TValue>>.IsReadOnly => InternalDictionary.IsReadOnly;
-        
+
         //Enumerator
         public IEnumerator<TValue> GetEnumerator() => InternalCollection.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => InternalDictionary.GetEnumerator();

@@ -1,5 +1,5 @@
-﻿using System.Windows.Controls;
-using Gstc.Collections.Observable;
+﻿using Gstc.Collections.Observable;
+using System.Windows.Controls;
 
 namespace Gstc.Collection.Observable.Examples {
     /// <summary>
@@ -9,7 +9,7 @@ namespace Gstc.Collection.Observable.Examples {
 
         //List of Customer models
         public ObservableList<Customer> CustomerList {
-            get => (ObservableList<Customer>) CustomerViewModelList.SourceCollection;
+            get => (ObservableList<Customer>)CustomerViewModelList.SourceCollection;
             set => CustomerViewModelList.SourceCollection = value;
         }
 

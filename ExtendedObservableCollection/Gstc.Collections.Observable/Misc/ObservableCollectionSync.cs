@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace Gstc.Collections.Observable.misc {
 
-    public class ObservableCollectionSync<T1, T2> : ObservableCollection<T2> where T1 : class where T2 : class{
+    public class ObservableCollectionSync<T1, T2> : ObservableCollection<T2> where T1 : class where T2 : class {
         public ObservableCollection<T1> SourceCollection {
             get { return _sourceCollection; }
             set {
@@ -17,10 +17,10 @@ namespace Gstc.Collections.Observable.misc {
         private Converter<T2, T1> _convertBack;
         private ObservableCollection<T1> _sourceCollection;
 
-        public ObservableCollectionSync(Converter<T1, T2> convert, Converter<T2, T1> convertBack, ObservableCollection<T1> sourceCollection = null) {           
+        public ObservableCollectionSync(Converter<T1, T2> convert, Converter<T2, T1> convertBack, ObservableCollection<T1> sourceCollection = null) {
             _convert = convert;
             _convertBack = convertBack;
-            SourceCollection = sourceCollection ?? new ObservableCollection<T1>();            
+            SourceCollection = sourceCollection ?? new ObservableCollection<T1>();
         }
 
         private void OnNewCollection() {
@@ -34,7 +34,7 @@ namespace Gstc.Collections.Observable.misc {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
                     indexNew = args.NewStartingIndex;
-                    foreach (var item in args.NewItems) InsertItem(indexNew++,_convert(item as T1));                   
+                    foreach (var item in args.NewItems) InsertItem(indexNew++, _convert(item as T1));
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     indexOld = args.OldStartingIndex;
@@ -43,13 +43,13 @@ namespace Gstc.Collections.Observable.misc {
                 case NotifyCollectionChangedAction.Replace:
                     indexOld = args.OldStartingIndex;
                     indexNew = args.NewStartingIndex;
-                    foreach (var item in args.OldItems) RemoveAt(indexOld++);                    
+                    foreach (var item in args.OldItems) RemoveAt(indexOld++);
                     foreach (var item in args.NewItems) InsertItem(indexNew++, _convert(item as T1));
                     break;
                 case NotifyCollectionChangedAction.Move:
                     indexOld = args.OldStartingIndex;
                     indexNew = args.NewStartingIndex;
-                    foreach (var item in args.OldItems) MoveItem(indexOld++,indexNew++);
+                    foreach (var item in args.OldItems) MoveItem(indexOld++, indexNew++);
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     Clear();
@@ -60,7 +60,7 @@ namespace Gstc.Collections.Observable.misc {
             }
         }
 
-       
+
     }
 
 }

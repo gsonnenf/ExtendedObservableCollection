@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Extended {
     /// <summary>
@@ -82,7 +81,7 @@ namespace Gstc.Collections.Observable.Extended {
             switch (args.Action) {
                 case NotifyCollectionChangedAction.Add:
                     for (var i = 0; i < args.NewItems.Count; i++) {
-                        var item = Convert((TInput) args.NewItems[i]);
+                        var item = Convert((TInput)args.NewItems[i]);
                         Insert(args.NewStartingIndex + i, item);
                         Notifier(item);
                     }
@@ -93,7 +92,7 @@ namespace Gstc.Collections.Observable.Extended {
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     for (var i = 0; i < args.NewItems.Count; i++) {
-                        var item = Convert((TInput) args.NewItems[i]);
+                        var item = Convert((TInput)args.NewItems[i]);
                         this[args.OldStartingIndex + i] = item;
                         Notifier(item);
                     }

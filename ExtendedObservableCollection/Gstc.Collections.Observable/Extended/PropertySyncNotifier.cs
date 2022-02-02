@@ -19,7 +19,7 @@ namespace Gstc.Collections.Observable.Extended {
 
             if (sourceItem == null && destItem == null) throw new System.ArgumentException("One of the objects must implement INotifyPropertySyncChanged."); ;
 
-            if (DestSync != null ) SourceNotify.PropertyChanged += DestTrigger;
+            if (DestSync != null) SourceNotify.PropertyChanged += DestTrigger;
             if (SourceSync != null) DestNotify.PropertyChanged += SourceTrigger;
         }
 
@@ -34,7 +34,7 @@ namespace Gstc.Collections.Observable.Extended {
             LastArgs.Add(args);
             SourceSync.OnPropertyChanged(sender, args);
         }
-        
+
         /*
         private int updateCount = 0;
 

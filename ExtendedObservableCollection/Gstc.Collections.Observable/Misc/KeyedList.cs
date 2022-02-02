@@ -11,14 +11,14 @@ namespace Gstc.Collections.Observable.misc {
         public Dictionary<TKey, TValue> Dictionary => _dictionary;
 
         public abstract TKey GetKey(TValue item);
-          
+
         public void Clear() {
             _dictionary.Clear();
             _list.Clear();
         }
 
         public void Add(TValue item) {
-            if (_dictionary.ContainsKey( GetKey(item) )) throw new ArgumentException("Duplicate Keyed items are not allowed.");
+            if (_dictionary.ContainsKey(GetKey(item))) throw new ArgumentException("Duplicate Keyed items are not allowed.");
             _dictionary.Add(GetKey(item), item);
             _list.Add(item);
         }
@@ -33,8 +33,8 @@ namespace Gstc.Collections.Observable.misc {
         public void Insert(int index, TValue item) {
             var key = GetKey(item);
             if (_dictionary.ContainsKey(key)) throw new ArgumentException("Duplicate Keyed items are not allowed.");
-            _dictionary.Add(key,item);
-            _list.Insert(index, item);       
+            _dictionary.Add(key, item);
+            _list.Insert(index, item);
         }
 
         public bool Remove(TKey key) {
@@ -50,7 +50,7 @@ namespace Gstc.Collections.Observable.misc {
             _dictionary.Remove(GetKey(item));
             return true;
         }
-     
+
         public void RemoveAt(int index) {
             var item = _list[index];
             var key = GetKey(item);
@@ -62,7 +62,7 @@ namespace Gstc.Collections.Observable.misc {
             get { return _dictionary[key]; }
             set {
                 if (!ValidateKey(key, value)) throw new ArgumentException("Explicit key must Match Item.");
-                if ( _dictionary.ContainsKey(key) ) {
+                if (_dictionary.ContainsKey(key)) {
                     var oldItem = _dictionary[key];
                     var index = _list.IndexOf(oldItem);
                     _dictionary[key] = value;
@@ -98,7 +98,7 @@ namespace Gstc.Collections.Observable.misc {
 
         IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
 
-        public bool ValidateKey(TKey key, TValue item) => ( Equals(key, GetKey(item) ));
+        public bool ValidateKey(TKey key, TValue item) => (Equals(key, GetKey(item)));
 
 
     }

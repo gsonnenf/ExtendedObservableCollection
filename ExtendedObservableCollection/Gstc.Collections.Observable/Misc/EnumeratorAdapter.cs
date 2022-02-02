@@ -9,7 +9,7 @@ namespace Gstc.Collections.Observable.misc {
     /// </summary>
     /// <typeparam name="T1"></typeparam>
     /// <typeparam name="T2"></typeparam>
-    public class EnumeratorAdapter<T1,T2> : IEnumerator where T2  : class where T1 : class {
+    public class EnumeratorAdapter<T1, T2> : IEnumerator where T2 : class where T1 : class {
 
         private readonly IEnumerator _enumerator;
         public Func<T1, T2> Adapt;
@@ -17,7 +17,7 @@ namespace Gstc.Collections.Observable.misc {
         public EnumeratorAdapter(IEnumerator enumerator, Func<T1, T2> adapt) {
             _enumerator = enumerator;
             Adapt = adapt;
-        }       
+        }
         public T2 Current => Adapt?.Invoke(_enumerator.Current as T1);
         public bool MoveNext() => _enumerator.MoveNext();
         public void Reset() => _enumerator.Reset();

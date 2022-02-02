@@ -3,8 +3,8 @@ using System.Collections.Specialized;
 
 namespace Gstc.Collections.Observable.Base {
 
-    public abstract class NotifyCollection : 
-        NotifyProperty, 
+    public abstract class NotifyCollection :
+        NotifyProperty,
         INotifyCollectionChanged {
 
         #region Events
@@ -40,14 +40,14 @@ namespace Gstc.Collections.Observable.Base {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
             using (BlockReentrancy()) {
                 CollectionChanged?.Invoke(this, eventArgs);
-                Reset?.Invoke(this, eventArgs);               
+                Reset?.Invoke(this, eventArgs);
             }
         }
 
         protected void OnCollectionChangedAdd(object value, int index) {
             var eventArgs = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, value, index);
             using (BlockReentrancy()) {
-                CollectionChanged?.Invoke(this, eventArgs); 
+                CollectionChanged?.Invoke(this, eventArgs);
                 Added?.Invoke(this, eventArgs);
             }
         }
@@ -82,7 +82,7 @@ namespace Gstc.Collections.Observable.Base {
                 CollectionChanged?.Invoke(this, eventArgs);
                 Replaced?.Invoke(this, eventArgs);
             }
-        }    
+        }
         #endregion
     }
 }

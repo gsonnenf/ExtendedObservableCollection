@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable.Base {
-    public class NotifyDictionaryChangedEventArgs<TKey,TValue> : NotifyDictionaryChangedEventArgs {
+    public class NotifyDictionaryChangedEventArgs<TKey, TValue> : NotifyDictionaryChangedEventArgs {
 
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action) : base(action) { }
 
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, TKey key, TValue changedItem) : base(action, key, changedItem) { }
 
-        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<TKey> keys, IList<TValue> changedItems) : base(action, keys, changedItems) {}
+        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<TKey> keys, IList<TValue> changedItems) : base(action, keys, changedItems) { }
 
-        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, TKey key, TValue oldItem, TValue newItem) : base(action, key, oldItem, newItem) {}
+        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, TKey key, TValue oldItem, TValue newItem) : base(action, key, oldItem, newItem) { }
 
-        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<TKey> keys, IList<TValue> newItems, IList<TValue> oldItems) : base(action, keys, newItems, oldItems) {}
+        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<TKey> keys, IList<TValue> newItems, IList<TValue> oldItems) : base(action, keys, newItems, oldItems) { }
 
 
         //public new IList<TValue> NewItems => (IList<TValue>) base.NewItems;
@@ -28,8 +28,8 @@ namespace Gstc.Collections.Observable.Base {
         event NotifyDictionaryChangedEventHandler<TKey, TValue> DictionaryChanged;
     }
 
-    public delegate void NotifyDictionaryChangedEventHandler<TKey, TValue> (object sender, NotifyDictionaryChangedEventArgs<TKey, TValue> e);
+    public delegate void NotifyDictionaryChangedEventHandler<TKey, TValue>(object sender, NotifyDictionaryChangedEventArgs<TKey, TValue> e);
 }
 
-   
+
 

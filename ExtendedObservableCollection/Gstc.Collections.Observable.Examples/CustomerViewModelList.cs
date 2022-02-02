@@ -1,5 +1,4 @@
-﻿using Gstc.Collections.Observable;
-using Gstc.Collections.Observable.Extended;
+﻿using Gstc.Collections.Observable.Extended;
 
 namespace Gstc.Collection.Observable.Examples {
     //Implementation of abstract class Observable list Adapter.

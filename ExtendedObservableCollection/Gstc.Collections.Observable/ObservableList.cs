@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Gstc.Collections.Observable.Base;
+using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable.Base;
 
 namespace Gstc.Collections.Observable {
 
@@ -79,7 +79,7 @@ namespace Gstc.Collections.Observable {
         /// <param name="item">Item to add</param>
         public override void Add(TItem item) {
             _list.Add(item);
-            OnPropertyChangedCountAndIndex(); 
+            OnPropertyChangedCountAndIndex();
             OnCollectionChangedAdd(item, _list.IndexOf(item));
         }
 
@@ -99,9 +99,9 @@ namespace Gstc.Collections.Observable {
         /// <param name="index"></param>
         /// <param name="item"></param>
         public override void Insert(int index, TItem item) {
-            _list.Insert(index,item);
+            _list.Insert(index, item);
             OnPropertyChangedCountAndIndex();
-            OnCollectionChangedAdd(item,index);
+            OnCollectionChangedAdd(item, index);
         }
 
         /// <summary>

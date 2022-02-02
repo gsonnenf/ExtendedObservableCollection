@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
 
@@ -24,7 +23,7 @@ namespace Gstc.Collections.Observable.Base {
 
         #region IList
 
-        int IList.Add(object value) { Add((TItem) value); return Count - 1; }
+        int IList.Add(object value) { Add((TItem)value); return Count - 1; }
 
         bool IList.Contains(object value) => Contains((TItem)value);
         int IList.IndexOf(object value) => IndexOf((TItem)value);
@@ -35,7 +34,8 @@ namespace Gstc.Collections.Observable.Base {
         bool IList.IsFixedSize => false;
         object IList.this[int index] {
             get => this[index];
-            set => this[index] = (TItem)value; }
+            set => this[index] = (TItem)value;
+        }
         #endregion
 
         TItem IList<TItem>.this[int index] {
@@ -44,7 +44,7 @@ namespace Gstc.Collections.Observable.Base {
         }
 
         public int Count => InternalList.Count;
-        
+
         public bool Contains(TItem item) => InternalList.Contains(item);
         public void CopyTo(TItem[] array, int arrayIndex) => InternalList.CopyTo(array, arrayIndex);
         public int IndexOf(TItem item) => InternalList.IndexOf(item);
@@ -60,6 +60,6 @@ namespace Gstc.Collections.Observable.Base {
         bool ICollection.IsSynchronized => ((ICollection)InternalList).IsSynchronized;
         object ICollection.SyncRoot => ((ICollection)InternalList).SyncRoot;
 
-     
+
     }
 }

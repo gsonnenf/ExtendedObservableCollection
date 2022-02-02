@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Gstc.Collections.Observable.Base;
+﻿using Gstc.Collections.Observable.Base;
+using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable {
 
@@ -9,7 +9,7 @@ namespace Gstc.Collections.Observable {
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
     public class ObservableSortedList<TKey, TValue> : BaseObservableSortedList<TKey, TValue> {
-       
+
         private SortedList<TKey, TValue> _sortedList;
 
         protected override SortedList<TKey, TValue> InternalSortedList => _sortedList;
@@ -25,9 +25,9 @@ namespace Gstc.Collections.Observable {
         }
 
         //Constructors
-        public ObservableSortedList() {  _sortedList = new SortedList<TKey, TValue>();  }
+        public ObservableSortedList() { _sortedList = new SortedList<TKey, TValue>(); }
 
-        public ObservableSortedList(SortedList<TKey, TValue> sortedList) { SortedList = sortedList;  }     
+        public ObservableSortedList(SortedList<TKey, TValue> sortedList) { SortedList = sortedList; }
 
         // Overrides
         public override TValue this[TKey key] {
@@ -46,12 +46,12 @@ namespace Gstc.Collections.Observable {
 
         public override void Add(TKey key, TValue value) {
             //CheckReentrancy();
-            _sortedList.Add(key, value);           
+            _sortedList.Add(key, value);
             OnPropertyChangedCountAndIndex();
-            OnCollectionChangedAdd(value, _sortedList.IndexOfKey(key) );
+            OnCollectionChangedAdd(value, _sortedList.IndexOfKey(key));
             OnDictionaryChangedAdd(key, value);
         }
-   
+
         public override void Clear() {
             //CheckReentrancy();
             _sortedList.Clear();
@@ -64,7 +64,7 @@ namespace Gstc.Collections.Observable {
             //CheckReentrancy();           
             var removedIndex = _sortedList.IndexOfKey(key);
             var removedValue = _sortedList[key];
-            if ( !_sortedList.Remove(key) ) return false;
+            if (!_sortedList.Remove(key)) return false;
             OnPropertyChangedCountAndIndex();
             OnCollectionChangedRemove(removedValue, removedIndex);
             OnDictionaryRemove(key, removedValue);
@@ -73,5 +73,5 @@ namespace Gstc.Collections.Observable {
         }
 
     }
-    
+
 }

@@ -29,7 +29,7 @@ namespace Gstc.Collection.Observable.Examples {
                 DestGrid.ItemsSource = ObvListSync;
             }
         }
-  
+
         public ObservableListSyncControl() {
             InitializeComponent();
             //Initializes example data
@@ -49,6 +49,6 @@ namespace Gstc.Collection.Observable.Examples {
         private void Button_Click_1(object sender, RoutedEventArgs e) {
             ObvListSync[0].Num2 += 40;
         }
-   
+
     }
 }

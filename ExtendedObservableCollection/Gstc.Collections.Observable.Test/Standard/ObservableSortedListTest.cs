@@ -1,11 +1,11 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using Moq;
 using NUnit.Framework;
+using System;
 
 namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
-    public class ObservableSortedListTest : CollectionTestBase<object,object> {
+    public class ObservableSortedListTest : CollectionTestBase<object, object> {
 
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),
@@ -13,18 +13,18 @@ namespace Gstc.Collections.Observable.Test.Standard {
         };
         private static object[] DefaultStaticValue { get; } = {
             null,
-            Fixture.Create<object>(),          
+            Fixture.Create<object>(),
             Fixture.Create<string>(),
             Fixture.Create<int>(),
             Fixture.Create<double>()
         };
-              
+
         private ObservableSortedList<object, object> ObvSortedList { get; set; }
 
 
         [SetUp]
         public new void TestInit() {
-            base.TestInit();          
+            base.TestInit();
             ObvSortedList = new ObservableSortedList<object, object>();
         }
 
@@ -40,12 +40,12 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
             ObvSortedList.Clear();
 
-            AssertMockEventNotifiers(2,1,1);
+            AssertMockEventNotifiers(2, 1, 1);
             Assert.That(ObvSortedList.Count, Is.EqualTo(0));
-            
+
         }
 
-        
+
         [Test, Description("")]
         public void TestMethod_ReplaceDictionary() {
 
@@ -58,8 +58,8 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvSortedList.SortedList = new System.Collections.Generic.SortedList<object, object>();
 
             AssertMockEventNotifiers(2, 1, 1);
-            Assert.That( ObvSortedList.Count, Is.EqualTo(0));
-            
+            Assert.That(ObvSortedList.Count, Is.EqualTo(0));
+
         }
 
         [Test, TestCaseSource(nameof(DefaultStaticValue)), Description("Add key/item using Add")]
@@ -103,9 +103,9 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
         [Test, TestCaseSource(nameof(DefaultStaticValue)), Description("Replace value using index")]
         public void TestMethod_ReplaceValue(object value) {
-          
+
             ObvSortedList.Add(DefaultKey, DefaultValue);
-                      
+
             ObvSortedList.CollectionChanged += (sender, args) => {
                 Assert.AreEqual(args.NewItems[0], value);
                 Assert.AreEqual(args.OldItems[0], DefaultValue);
@@ -124,8 +124,8 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvSortedList.PropertyChanged += (sender, args) => Assert.Fail();
             ObvSortedList.CollectionChanged += (sender, args) => Assert.Fail();
 
-            Assert.Throws<ArgumentNullException>( ()=> ObvSortedList.Add(null, DefaultValue) );
-            Assert.Throws<ArgumentNullException>( () => ObvSortedList[null] = DefaultValue );
+            Assert.Throws<ArgumentNullException>(() => ObvSortedList.Add(null, DefaultValue));
+            Assert.Throws<ArgumentNullException>(() => ObvSortedList[null] = DefaultValue);
         }
 
         [Test, Description("")]
@@ -136,7 +136,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvSortedList.PropertyChanged += (sender, args) => Assert.Fail();
             ObvSortedList.CollectionChanged += (sender, args) => Assert.Fail();
 
-            Assert.Throws<ArgumentException>(() => ObvSortedList.Add(DefaultKey, DefaultValue));           
+            Assert.Throws<ArgumentException>(() => ObvSortedList.Add(DefaultKey, DefaultValue));
         }
 
         #region Test Specific Utility
@@ -158,5 +158,5 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
 
     }
-  
+
 }

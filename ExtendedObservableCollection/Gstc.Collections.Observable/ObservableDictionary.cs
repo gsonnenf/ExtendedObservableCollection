@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Gstc.Collections.Observable.Base;
+﻿using Gstc.Collections.Observable.Base;
+using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable {
 
@@ -11,7 +11,7 @@ namespace Gstc.Collections.Observable {
     /// </summary>
     /// <typeparam name="TKey">Key field of Dictionary</typeparam>
     /// <typeparam name="TValue">Value field of Dictionary</typeparam>
-    public class ObservableDictionary<TKey, TValue> : BaseObservableDictionary<TKey,TValue> {
+    public class ObservableDictionary<TKey, TValue> : BaseObservableDictionary<TKey, TValue> {
 
         private Dictionary<TKey, TValue> _dictionary;
 
@@ -68,10 +68,10 @@ namespace Gstc.Collections.Observable {
 
         public override bool Remove(TKey key) {
             CheckReentrancy();
-            var removedItem = _dictionary[key];           
+            var removedItem = _dictionary[key];
             if (!_dictionary.Remove(key)) return false;
             OnPropertyChangedCountAndIndex();
-            OnDictionaryRemove( key, removedItem);
+            OnDictionaryRemove(key, removedItem);
             return true;
         }
     }

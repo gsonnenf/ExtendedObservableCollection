@@ -22,8 +22,8 @@ namespace Gstc.Collections.Observable.Base {
         /// <param name="changedItem">The item affected by the change.</param>
         /// <param name="key">The key where the change occurred.</param>
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, object key, object changedItem) {
-            if (action == NotifyDictionaryChangedAction.Add) InitializeAdd(action, new[] { key }, new [] { changedItem });
-            else if (action == NotifyDictionaryChangedAction.Remove) InitializeRemove(action, new[] { key }, new [] { changedItem });
+            if (action == NotifyDictionaryChangedAction.Add) InitializeAdd(action, new[] { key }, new[] { changedItem });
+            else if (action == NotifyDictionaryChangedAction.Remove) InitializeRemove(action, new[] { key }, new[] { changedItem });
             else throw new ArgumentException(SR.GetString(SR.MustBeResetAddOrRemoveActionForCtor), "action");
         }
 
@@ -38,10 +38,10 @@ namespace Gstc.Collections.Observable.Base {
             if (changedItems == null) throw new ArgumentNullException("changedItems");
             if (keys == null || keys.Count == 0) throw new ArgumentException(SR.GetString(SR.KeyMustNotBeNullOrZeroLength), "Keys");
 
-            if (action == NotifyDictionaryChangedAction.Add) InitializeAdd(action, keys, changedItems );
-            else if (action == NotifyDictionaryChangedAction.Remove) InitializeRemove(action, keys, changedItems);            
+            if (action == NotifyDictionaryChangedAction.Add) InitializeAdd(action, keys, changedItems);
+            else if (action == NotifyDictionaryChangedAction.Remove) InitializeRemove(action, keys, changedItems);
             else throw new ArgumentException(SR.GetString(SR.MustBeResetAddOrRemoveActionForCtor), "action");
-            
+
         }
 
 
@@ -54,7 +54,7 @@ namespace Gstc.Collections.Observable.Base {
         /// <param name="key">Keys of items that have been replaced.</param>
         public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, object key, object oldItem, object newItem) {
             if (action != NotifyDictionaryChangedAction.Replace) throw new ArgumentException(SR.GetString(SR.WrongActionForCtor, NotifyDictionaryChangedAction.Replace), "action");
-            InitializeReplace(action, new[] { key }, new[] { oldItem }, new[] { newItem } );
+            InitializeReplace(action, new[] { key }, new[] { oldItem }, new[] { newItem });
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Gstc.Collections.Observable.Base {
         /// <param name="newItems">The new items replacing the original items.</param>
         /// <param name="oldItems">The original items that are replaced.</param>
         /// <param name="keys">Keys of items that have been replaced.</param>
-        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<object> keys, IList<object> newItems, IList<object> oldItems ) {
+        public NotifyDictionaryChangedEventArgs(NotifyDictionaryChangedAction action, IList<object> keys, IList<object> newItems, IList<object> oldItems) {
             if (action != NotifyDictionaryChangedAction.Replace) throw new ArgumentException(SR.GetString(SR.WrongActionForCtor, NotifyDictionaryChangedAction.Replace), "action");
             if (newItems == null) throw new ArgumentNullException("newItems");
             if (oldItems == null) throw new ArgumentNullException("oldItems");
@@ -133,7 +133,7 @@ namespace Gstc.Collections.Observable.Base {
     }
 
 
-    public interface INotifyDictionaryChanged {   
+    public interface INotifyDictionaryChanged {
         event NotifyDictionaryChangedEventHandler DictionaryChanged;
     }
 

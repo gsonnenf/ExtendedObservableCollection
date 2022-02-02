@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoFixture;
+﻿using AutoFixture;
 using Gstc.Collections.Observable.Base;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
-    public class ObservableDictionaryTest : CollectionTestBase<object,object> {
-      
+    public class ObservableDictionaryTest : CollectionTestBase<object, object> {
+
         private static object[] DefaultStaticKey { get; } = {
             Fixture.Create<object>(),
             Fixture.Create<string>()
@@ -27,16 +27,16 @@ namespace Gstc.Collections.Observable.Test.Standard {
         [SetUp]
         public new void TestInit() {
             base.TestInit();
-            ObvDictionary = new ObservableDictionary<object, object>();           
+            ObvDictionary = new ObservableDictionary<object, object>();
         }
 
         [Test, TestCaseSource(nameof(DefaultStaticValue)), Description("Add key/item using Add")]
         public void TestMethod_Add(object item) {
-
+            //object item = StaticValueRef[index];
             ObvDictionary.DictionaryChanged += GenerateAssertDictionaryEventAddOne(DefaultKey, item);
             AddMockEventNotifiers();
-            ObvDictionary.Add(DefaultKey, item);          
-            AssertMockEventNotifiers(2,1);
+            ObvDictionary.Add(DefaultKey, item);
+            AssertMockEventNotifiers(2, 1);
         }
 
         [Test, TestCaseSource(nameof(DefaultStaticValue)), Description("Replace value using index")]
@@ -47,7 +47,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
             ObvDictionary[DefaultKey] = item;
 
-            AssertMockEventNotifiers(2, 1);          
+            AssertMockEventNotifiers(2, 1);
         }
 
         [Test, Description("")]
@@ -61,7 +61,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvDictionary.Clear();
 
             AssertMockEventNotifiers(2, 1);
-            Assert.That(ObvDictionary.Count, Is.EqualTo(0));          
+            Assert.That(ObvDictionary.Count, Is.EqualTo(0));
         }
 
 
@@ -76,7 +76,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvDictionary.Dictionary = new Dictionary<object, object>();
 
             AssertMockEventNotifiers(2, 1);
-            Assert.That( ObvDictionary.Count, Is.EqualTo(0));
+            Assert.That(ObvDictionary.Count, Is.EqualTo(0));
         }
 
         [Test, Description("Remove Key/item using key")]
@@ -89,12 +89,12 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
             ObvDictionary.Remove(DefaultKey);
 
-            AssertMockEventNotifiers(2, 1);           
+            AssertMockEventNotifiers(2, 1);
         }
 
         [Test, Description("Replace value using index")]
         public void TestMethod_ReplaceValue() {
-           
+
             ObvDictionary.Add(DefaultKey, DefaultValue);
 
             ObvDictionary.DictionaryChanged += (sender, args) => {
@@ -108,14 +108,14 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
             ObvDictionary[DefaultKey] = UpdateValue;
 
-            MockEvent.Verify(m => m.Call("DictionaryChanged"), Times.Exactly(1));           
+            MockEvent.Verify(m => m.Call("DictionaryChanged"), Times.Exactly(1));
         }
 
         [Test, Description("")]
         public void TestMethod_NullKey() {
 
             //Fails if null keys trigger an event.
-            ObvDictionary.DictionaryChanged += (sender, args) => Assert.Fail();         
+            ObvDictionary.DictionaryChanged += (sender, args) => Assert.Fail();
             Assert.Throws<ArgumentNullException>(() => ObvDictionary.Add(null, DefaultValue));
             Assert.Throws<ArgumentNullException>(() => ObvDictionary[null] = DefaultValue);
         }
@@ -126,7 +126,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvDictionary.Add(DefaultKey, DefaultValue);
 
             //Fails if adding a duplicate triggers triggers an event.
-            ObvDictionary.DictionaryChanged += (sender, args) => Assert.Fail();          
+            ObvDictionary.DictionaryChanged += (sender, args) => Assert.Fail();
             Assert.Throws<ArgumentException>(() => ObvDictionary.Add(DefaultKey, DefaultValue));
         }
 

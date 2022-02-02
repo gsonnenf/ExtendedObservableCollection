@@ -5,7 +5,7 @@ namespace Gstc.Collections.Observable.Base {
     /// Provides a set of events that will be triggered by changes to a List.
     /// </summary>
     public interface INotifyListChanged {
-        
+
         /// <summary>
         /// Triggers events when an item or items are added. 
         /// </summary>

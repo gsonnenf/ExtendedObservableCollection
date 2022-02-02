@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using AutoFixture;
+﻿using AutoFixture;
 using Gstc.Collections.Observable.Base;
 using Gstc.Collections.Observable.Extended;
-using Gstc.Collections.Observable;
 using Moq;
 using NUnit.Framework;
+using System.Linq;
 
 namespace Gstc.Collections.Observable.Test.Extended {
 
@@ -12,7 +11,7 @@ namespace Gstc.Collections.Observable.Test.Extended {
     public class ObservableListAdapterTest : CollectionTestBase<object, string> {
         private BaseObservableList<string> TestBaseList { get; set; }
         private ObservableListAdapterConcrete ListAdapter { get; set; }
-      
+
         [SetUp]
         public new void TestInit() {
             base.TestInit();
@@ -107,7 +106,7 @@ namespace Gstc.Collections.Observable.Test.Extended {
             Assert.That(Item1 == ListAdapter[0].BaseString);
             Assert.That(Item2 == ListAdapter[1].BaseString);
             Assert.That(Item3 == ListAdapter[2].BaseString);
-            
+
 
             ListAdapter.SourceCollection = testListB;
 
@@ -147,7 +146,7 @@ namespace Gstc.Collections.Observable.Test.Extended {
 
             Assert.That(ListAdapter.Count == 3);
 
-            TestBaseList.Move(1,0);
+            TestBaseList.Move(1, 0);
 
             Assert.That(ListAdapter.Count == 3);
             Assert.That(ListAdapter[0].BaseString == Item2);
@@ -178,18 +177,18 @@ namespace Gstc.Collections.Observable.Test.Extended {
 
         [Test, Description("")]
         public void TestMethod_Clear() {
-  
+
             TestBaseList.Add(Item1);
             TestBaseList.Add(Item2);
             TestBaseList.Add(Item3);
 
             ListAdapter = new ObservableListAdapterConcrete(TestBaseList);
 
-            Assert.That( ListAdapter.Count == 3 );
+            Assert.That(ListAdapter.Count == 3);
 
             TestBaseList.Clear();
 
-            Assert.That( ListAdapter.Count == 0 );
+            Assert.That(ListAdapter.Count == 0);
         }
 
 
@@ -217,11 +216,11 @@ namespace Gstc.Collections.Observable.Test.Extended {
 
             public ObservableListAdapterConcrete() : base() { }
 
-            public ObservableListAdapterConcrete(IObservableCollection<string> sourceCollection) : base(sourceCollection) {}
+            public ObservableListAdapterConcrete(IObservableCollection<string> sourceCollection) : base(sourceCollection) { }
 
             public override string Convert(TestItemClass itemClass) => itemClass.StringView;
 
-            public override TestItemClass Convert(string item) => new TestItemClass( item );
+            public override TestItemClass Convert(string item) => new TestItemClass(item);
         }
         #endregion
     }

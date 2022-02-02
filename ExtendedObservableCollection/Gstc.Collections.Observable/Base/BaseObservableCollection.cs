@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class BaseObservableCollection<TItem> : 
-        NotifyCollection, 
+    public abstract class BaseObservableCollection<TItem> :
+        NotifyCollection,
         IObservableCollection<TItem> {
 
         protected abstract ICollection<TItem> InternalCollection { get; }
@@ -15,7 +14,7 @@ namespace Gstc.Collections.Observable.Base {
         public abstract void Add(TItem item);
         public abstract void Clear();
         public abstract bool Remove(TItem item);
-      
+
         // ICollection
         public int Count => InternalCollection.Count;
         public bool IsReadOnly => ((IList)InternalCollection).IsReadOnly;

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using AutoFixture;
+﻿using AutoFixture;
 using Gstc.Collections.Observable.Base;
-using Gstc.Collections.Observable;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Gstc.Collections.Observable.Test {
     public class CollectionTestBase<TKey, TItem> {
@@ -35,8 +34,8 @@ namespace Gstc.Collections.Observable.Test {
         protected TItem DefaultValue { get; set; }
         protected TItem UpdateValue { get; set; }
 
-        
-        
+
+
         #endregion
 
         public void TestInit() {
@@ -167,7 +166,7 @@ namespace Gstc.Collections.Observable.Test {
             }
 
             public void AssertMockNotifiersDictionary(int timesDictionaryCalled) {
-                _timesDictionaryCalled += timesDictionaryCalled;          
+                _timesDictionaryCalled += timesDictionaryCalled;
                 Verify(m => m.Call("DictionaryChanged"), Times.Exactly(_timesDictionaryCalled));
             }
 
@@ -176,8 +175,8 @@ namespace Gstc.Collections.Observable.Test {
                 obvList.CollectionChanged -= OnCollectionChanged;
             }
 
-            public void RemoveDictionaryNotifiers(IObservableDictionary<string,TestItem> obvDict) {
-                obvDict.DictionaryChanged -= OnDictionaryChanged;              
+            public void RemoveDictionaryNotifiers(IObservableDictionary<string, TestItem> obvDict) {
+                obvDict.DictionaryChanged -= OnDictionaryChanged;
             }
 
             private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

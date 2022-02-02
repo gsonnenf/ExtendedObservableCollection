@@ -1,12 +1,11 @@
 ﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using AutoFixture;
 using Gstc.Collections.Observable.Base;
 using Gstc.Collections.Observable.Extended;
-using Gstc.Collections.Observable;
 using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable.Test {
     public class InterfaceTestCases : CollectionTestBase<string, TestItem> {
@@ -230,14 +229,14 @@ namespace Gstc.Collections.Observable.Test {
             Assert.AreSame(Key1, keys.Current);
             keys.MoveNext();
             Assert.AreSame(Key2, keys.Current);
-          
+
 
             var values = dictionary.Values.GetEnumerator();
             values.MoveNext();
             Assert.AreSame(Item1, values.Current);
             values.MoveNext();
             Assert.AreSame(Item2, values.Current);
-            
+
             //Readonlytest
             Assert.IsNotNull(dictionary.IsReadOnly);
 
@@ -330,7 +329,7 @@ namespace Gstc.Collections.Observable.Test {
             //TryGetValue test
 
             TestItem item = null;
-            Assert.IsTrue(dictionary.TryGetValue(Key1,out item));
+            Assert.IsTrue(dictionary.TryGetValue(Key1, out item));
             Assert.IsFalse(dictionary.TryGetValue(Key3, out item));
 
             //Readonlytest
@@ -350,13 +349,13 @@ namespace Gstc.Collections.Observable.Test {
             Assert.IsNull(enumerator.Current.Value);
 
             //ICollection<KVP>, IEnumerable<KVP>, IEnumerable
-               
+
             //TrygetValue
         }
 
-        public void CollectionKeyValuePairTest(ICollection<KeyValuePair<string,TestItem>> collection) {
+        public void CollectionKeyValuePairTest(ICollection<KeyValuePair<string, TestItem>> collection) {
 
-            Assert.IsNotNull(collection as INotifyDictionaryChanged<string,TestItem>);
+            Assert.IsNotNull(collection as INotifyDictionaryChanged<string, TestItem>);
             MockEvent.AddNotifiersDictionary(collection as INotifyDictionaryChanged<string, TestItem>);
 
             //Special case, ObservableListKeyed must have Keys match Item ID
@@ -415,10 +414,10 @@ namespace Gstc.Collections.Observable.Test {
             IEnumerator enumerator = collection.GetEnumerator();
             Assert.IsNotNull(enumerator);
             enumerator.MoveNext();
-            Assert.AreEqual(kvp1.Key, ((KeyValuePair<string, TestItem>) enumerator.Current).Key);
-            Assert.AreEqual(kvp1.Value, ((KeyValuePair<string, TestItem>) enumerator.Current).Value);
+            Assert.AreEqual(kvp1.Key, ((KeyValuePair<string, TestItem>)enumerator.Current).Key);
+            Assert.AreEqual(kvp1.Value, ((KeyValuePair<string, TestItem>)enumerator.Current).Value);
 
-            IEnumerator<KeyValuePair<string,TestItem>> enumeratorGeneric = collection.GetEnumerator();
+            IEnumerator<KeyValuePair<string, TestItem>> enumeratorGeneric = collection.GetEnumerator();
             Assert.IsNotNull(enumeratorGeneric);
             enumeratorGeneric.MoveNext();
             Assert.AreEqual(kvp1.Key, enumeratorGeneric.Current.Key);

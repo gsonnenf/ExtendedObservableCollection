@@ -33,7 +33,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
         [Test]
         public void CollectionKvp() => _testCases.CollectionKeyValuePairTest(Observable);
 
-        [Test] 
+        [Test]
         public void Dictionary() => _testCases.DictionaryTest(Observable);
 
         [Test]

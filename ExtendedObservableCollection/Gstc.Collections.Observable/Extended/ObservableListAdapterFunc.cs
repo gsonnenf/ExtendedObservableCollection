@@ -1,5 +1,4 @@
 ﻿using System;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Extended {
 
@@ -11,7 +10,7 @@ namespace Gstc.Collections.Observable.Extended {
     /// </summary>
     /// <typeparam name="TInput">Source element type (e.g. Model class)</typeparam>
     /// <typeparam name="TOutput">Destination element type (e.g. ViewModel class</typeparam>
-    public class ObservableListAdapterFunc<TInput,TOutput> : ObservableListAdapter<TInput,TOutput> {
+    public class ObservableListAdapterFunc<TInput, TOutput> : ObservableListAdapter<TInput, TOutput> {
 
         private Func<TInput, TOutput> _convert;
 
@@ -32,6 +31,6 @@ namespace Gstc.Collections.Observable.Extended {
 
         public override TInput Convert(TOutput item) => _convertBack(item);
 
-       
+
     }
 }

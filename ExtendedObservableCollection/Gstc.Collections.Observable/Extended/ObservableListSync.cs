@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Extended {
     /// <summary>
@@ -36,7 +35,7 @@ namespace Gstc.Collections.Observable.Extended {
         /// <param name="item">The ouput item to be converted back to its original type.</param>
         /// <returns>The source item type.</returns>
         public abstract TInput ConvertBack(TOutput item);
-  
+
         /// <summary>
         /// Initializes empty list. Must be filled.
         /// </summary>
@@ -53,7 +52,7 @@ namespace Gstc.Collections.Observable.Extended {
             this.CollectionChanged += DestinationCollectionChanged;
             SourceObservableList = sourceCollection ?? throw new ArgumentNullException("BaseCollection can not be null");
         }
-    
+
         /// <summary>
         /// A collection that implements IObservableCollection that the Adapter can watch.
         /// </summary>
@@ -74,23 +73,23 @@ namespace Gstc.Collections.Observable.Extended {
                     var sourceNotify = sourceItem as INotifyPropertySyncChanged;
                     var destNotify = destItem as INotifyPropertySyncChanged;
 
-                    _isPropertySync = 
-                        (sourceItem is INotifyPropertyChanged && destItem is INotifyPropertyChanged) && 
+                    _isPropertySync =
+                        (sourceItem is INotifyPropertyChanged && destItem is INotifyPropertyChanged) &&
                         (sourceItem is INotifyPropertySyncChanged || destItem is INotifyPropertySyncChanged);
 
-                    CreatePropertySync(sourceItem, destItem);                   
+                    CreatePropertySync(sourceItem, destItem);
                 }
                 _sourceList.CollectionChanged += SourceCollectionChanged;
             }
         }
 
-        private void CreatePropertySync(TInput sourceItem,TOutput destItem) {
+        private void CreatePropertySync(TInput sourceItem, TOutput destItem) {
             if (_isPropertySync) propertySyncNotifierList.Add(new PropertySyncNotifier(sourceItem as INotifyPropertyChanged, destItem as INotifyPropertyChanged));
 
         }
 
-      
-     
+
+
         //TODO: Add an optional dispatcher method to execute update code on a UI thread.
         private void SourceCollectionChanged(object sender, NotifyCollectionChangedEventArgs args) {
             this.CollectionChanged -= DestinationCollectionChanged;
@@ -113,7 +112,7 @@ namespace Gstc.Collections.Observable.Extended {
                         var sourceItem = (TInput)args.NewItems[i];
                         var destItem = Convert(sourceItem);
                         this[args.OldStartingIndex + i] = destItem;
-                        CreatePropertySync(sourceItem, destItem);                       
+                        CreatePropertySync(sourceItem, destItem);
                     }
                     break;
 
@@ -132,7 +131,7 @@ namespace Gstc.Collections.Observable.Extended {
 
                 default:
                     this.CollectionChanged += DestinationCollectionChanged;
-                    throw new ArgumentOutOfRangeException();                   
+                    throw new ArgumentOutOfRangeException();
             }
             this.CollectionChanged += DestinationCollectionChanged;
         }
@@ -156,7 +155,7 @@ namespace Gstc.Collections.Observable.Extended {
                 case NotifyCollectionChangedAction.Replace:
                     for (var i = 0; i < args.NewItems.Count; i++) {
                         var destItem = (TOutput)args.NewItems[i];
-                        var sourceItem = ConvertBack(destItem);                      
+                        var sourceItem = ConvertBack(destItem);
                         _sourceList[args.OldStartingIndex + i] = sourceItem;
                         CreatePropertySync(sourceItem, destItem);
                     }
@@ -177,7 +176,7 @@ namespace Gstc.Collections.Observable.Extended {
                 default:
                     _sourceList.CollectionChanged += SourceCollectionChanged;
                     throw new ArgumentOutOfRangeException();
-                   
+
             }
             _sourceList.CollectionChanged += SourceCollectionChanged;
         }

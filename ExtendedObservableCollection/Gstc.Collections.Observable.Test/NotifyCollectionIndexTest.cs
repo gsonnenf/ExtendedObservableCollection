@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Gstc.Collections.Observable.Test {
     [TestFixture]
-    public class NotifyCollectionIndexTest : CollectionTestBase<object,object> {
+    public class NotifyCollectionIndexTest : CollectionTestBase<object, object> {
 
         private ObservableSortedList<object, object> ObvDictionary { get; set; }
 
@@ -28,20 +28,20 @@ namespace Gstc.Collections.Observable.Test {
             ObvDictionary.Add(key1, value1);
             ObvDictionary.Add(key2, value2);
             ObvDictionary.Add(key3, value3);
-                   
+
             Log(ObvDictionary.SortedList.IndexOfKey(key1));
             Log(ObvDictionary.SortedList.IndexOfKey(key2));
             Log(ObvDictionary.SortedList.IndexOfKey(key3));
-            
 
-            ObvDictionary.CollectionChanged += (sender, args) => {                         
+
+            ObvDictionary.CollectionChanged += (sender, args) => {
                 Assert.That(args.OldItems[0], Is.EqualTo(value2));
                 Assert.That(args.OldStartingIndex, Is.EqualTo(2));
                 Assert.That(args.NewItems, Is.Null);
                 Assert.That(args.NewStartingIndex, Is.EqualTo(-1));
                 AssertEvent.Call("collection");
             };
-            
+
             ObvDictionary.Remove(key2);
 
             MockEvent.Verify(m => m.Call("collection"), Times.Exactly(1));

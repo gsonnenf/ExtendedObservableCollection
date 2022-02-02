@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Extended {
 
@@ -12,7 +11,7 @@ namespace Gstc.Collections.Observable.Extended {
     /// </summary>
     /// <typeparam name="TInput">Source element type (e.g. Model class)</typeparam>
     /// <typeparam name="TOutput">Destination element type (e.g. ViewModel class</typeparam>
-    public class ObservableListSyncFunc<TInput,TOutput> : ObservableListSync<TInput,TOutput> {
+    public class ObservableListSyncFunc<TInput, TOutput> : ObservableListSync<TInput, TOutput> {
 
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace Gstc.Collections.Observable.Extended {
             _convert = convert;
             _convertBack = convertBack;
         }
-   
+
         /// <summary>
         /// Converts item of type TInput to TOutput.
         /// </summary>
@@ -71,6 +70,6 @@ namespace Gstc.Collections.Observable.Extended {
         /// <returns></returns>
         public override TInput ConvertBack(TOutput item) => _convertBack(item);
 
-       
+
     }
 }

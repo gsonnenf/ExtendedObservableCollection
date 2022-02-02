@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Gstc.Collections.Observable;
 
 namespace Gstc.Collections.Observable.Base {
-    public abstract class BaseObservableDictionary<TKey, TValue> : 
+    public abstract class BaseObservableDictionary<TKey, TValue> :
         NotifyDictionary<TKey, TValue>,
         IObservableDictionary<TKey, TValue> {
 
@@ -14,7 +13,7 @@ namespace Gstc.Collections.Observable.Base {
         public abstract void Clear();
         public abstract void Add(TKey key, TValue value);
         public abstract bool Remove(TKey key);
-        
+
         //Dictionary
         public int Count => InternalDictionary.Count;
         public bool ContainsKey(TKey key) => InternalDictionary.ContainsKey(key);

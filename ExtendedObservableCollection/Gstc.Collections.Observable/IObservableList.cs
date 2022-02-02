@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Gstc.Collections.Observable {
 
@@ -12,7 +10,7 @@ namespace Gstc.Collections.Observable {
     public interface IObservableList<TItem> :
         IObservableCollection<TItem>,
         IList<TItem>,
-        IList { 
-       
+        IList {
+
     }
 }

@@ -10,18 +10,18 @@ namespace Gstc.Collections.Observable.Extended {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class ObservableListKeyedFunc<TKey,TValue> : ObservableListKeyed<TKey,TValue> {
-        
+    public class ObservableListKeyedFunc<TKey, TValue> : ObservableListKeyed<TKey, TValue> {
+
         public Func<TValue, TKey> GetKeyFunc;
 
-        public ObservableListKeyedFunc(Func<TValue, TKey> getKeyFunc) {  GetKeyFunc = getKeyFunc; }
+        public ObservableListKeyedFunc(Func<TValue, TKey> getKeyFunc) { GetKeyFunc = getKeyFunc; }
 
-        public ObservableListKeyedFunc(Func<TValue, TKey> getKeyFunc, List<TValue>  list) : base(list) {
+        public ObservableListKeyedFunc(Func<TValue, TKey> getKeyFunc, List<TValue> list) : base(list) {
             GetKeyFunc = getKeyFunc;
         }
 
         public override TKey GetKey(TValue item) => GetKeyFunc(item);
 
-      
+
     }
 }

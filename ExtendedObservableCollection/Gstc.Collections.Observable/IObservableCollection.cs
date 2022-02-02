@@ -12,7 +12,7 @@ namespace Gstc.Collections.Observable {
     }
 
     public interface IObservableCollection<TItem> :
-        ICollection<TItem>, 
+        ICollection<TItem>,
         IObservableCollection {
         new int Count { get; }
     }

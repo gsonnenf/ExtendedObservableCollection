@@ -5,14 +5,14 @@ namespace Gstc.Collections.Observable.Test.Extended {
     [TestFixture]
     public class ObservableListKeyedTestInterface {
 
-        public ObservableListKeyed<string,TestItem> Observable;
+        public ObservableListKeyed<string, TestItem> Observable;
 
         private readonly InterfaceTestCases _testCases = new InterfaceTestCases();
 
         [SetUp]
         public void TestInit() {
             _testCases.TestInit();
-            Observable = new ObservableListKeyedFunc<string,TestItem>( item => item.Id );
+            Observable = new ObservableListKeyedFunc<string, TestItem>(item => item.Id);
         }
 
         [Test]

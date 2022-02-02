@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Gstc.Collections.Observable.Base;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Gstc.Collections.Observable.Base;
 
 namespace Gstc.Collections.Observable.Extended {
 
@@ -10,7 +10,7 @@ namespace Gstc.Collections.Observable.Extended {
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class ObservableDictionaryCollection<TKey,TValue> : BaseObservableDictionaryCollection<TKey,TValue> {
+    public class ObservableDictionaryCollection<TKey, TValue> : BaseObservableDictionaryCollection<TKey, TValue> {
 
         private IDictionary<TKey, TValue> _dictionary;
         private Collection<TValue> _collection = new Collection<TValue>();
@@ -26,16 +26,16 @@ namespace Gstc.Collections.Observable.Extended {
         public ObservableDictionaryCollection(Dictionary<TKey, TValue> dictionary) {
             Dictionary = _dictionary;
         }
-      
+
         //Properties
         public IDictionary<TKey, TValue> Dictionary {
             get => _dictionary;
             set {
                 _dictionary = value;
                 _collection.Clear();
-                
+
                 var list = new List<TValue>();
-                foreach (var item in Dictionary) {                  
+                foreach (var item in Dictionary) {
                     list.Add(item.Value);
                     _collection.Add(item.Value);
                 }
@@ -81,12 +81,12 @@ namespace Gstc.Collections.Observable.Extended {
             var item = _dictionary[key];
 
             var index = _collection.IndexOf(item);
-            _collection.RemoveAt(index);           
+            _collection.RemoveAt(index);
             _dictionary.Remove(key);
 
             OnPropertyChangedCountAndIndex();
-            OnCollectionChangedRemove(item,index);
-            OnDictionaryRemove(key,item);
+            OnCollectionChangedRemove(item, index);
+            OnDictionaryRemove(key, item);
 
             return true;
         }

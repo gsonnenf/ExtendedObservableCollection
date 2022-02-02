@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using AutoFixture;
+﻿using AutoFixture;
 using Gstc.Collections.Observable.Base;
 using Gstc.Collections.Observable.Extended;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Gstc.Collections.Observable.Test.Extended {
     [TestFixture]

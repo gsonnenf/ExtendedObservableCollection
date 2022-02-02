@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Gstc.Collections.Observable.Test.Standard {
     [TestFixture]
@@ -29,10 +29,10 @@ namespace Gstc.Collections.Observable.Test.Standard {
         [Test, Description("")]
         public void TestMethod_ListAdd() {
 
-            List<object> list = new List<object> {Item1, Item2, Item3};
+            List<object> list = new List<object> { Item1, Item2, Item3 };
 
             ObvList.CollectionChanged += AssertCollectionEventReset;
-            AddMockNotifiers();           
+            AddMockNotifiers();
 
             ObvList.List = list;
 
@@ -41,12 +41,12 @@ namespace Gstc.Collections.Observable.Test.Standard {
             Assert.That(ObvList[0] == Item1);
             Assert.That(ObvList[1] == Item2);
             Assert.That(ObvList[2] == Item3);
-            
+
         }
 
         [Test, Description("")]
         public void TestMethod_Add() {
-            
+
             ObvList.CollectionChanged += GenerateAssertCollectionEventAddOne(0, DefaultTestItem);
             AddMockNotifiers();
 
@@ -55,7 +55,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             AssertMockNotifiers(2, 1);
             Assert.That(ObvList.Count == 1);
             Assert.That(ObvList[0] == DefaultTestItem);
-            
+
         }
 
         [Test, Description("")]
@@ -66,14 +66,14 @@ namespace Gstc.Collections.Observable.Test.Standard {
             ObvList.CollectionChanged += GenerateAssertCollectionEventAddThree(1, Item1, Item2, Item3);
             AddMockNotifiers();
 
-            ObvList.AddRange(new List<object>() {Item1,Item2,Item3});
+            ObvList.AddRange(new List<object>() { Item1, Item2, Item3 });
 
             AssertMockNotifiers(2, 1);
-            Assert.That(ObvList.Count,Is.EqualTo(4));
+            Assert.That(ObvList.Count, Is.EqualTo(4));
             Assert.That(ObvList[0], Is.EqualTo(DefaultTestItem));
             Assert.That(ObvList[1], Is.EqualTo(Item1));
             Assert.That(ObvList[2], Is.EqualTo(Item2));
-            Assert.That(ObvList[3], Is.EqualTo(Item3));            
+            Assert.That(ObvList[3], Is.EqualTo(Item3));
         }
 
         [Test, Description("")]
@@ -93,7 +93,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             Assert.That(ObvList.Count == 3);
             Assert.That(ObvList[0] == Item1);
             Assert.That(ObvList[1] == Item2);
-            Assert.That(ObvList[2] == Item3);            
+            Assert.That(ObvList[2] == Item3);
         }
 
         [Test, Description("")]
@@ -109,7 +109,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
             AssertMockNotifiers(2, 1);
             Assert.That(ObvList.Count == 2);
             Assert.That(ObvList[0] == Item1);
-            Assert.That(ObvList[1] == Item3);                 
+            Assert.That(ObvList[1] == Item3);
         }
 
         [Test, Description("")]
@@ -119,13 +119,13 @@ namespace Gstc.Collections.Observable.Test.Standard {
 
             ObvList.CollectionChanged += GenerateAssertCollectionEventRemoveOne(1, Item2);
             AddMockNotifiers();
-            
+
             ObvList.RemoveAt(1);
 
             AssertMockNotifiers(2, 1);
             Assert.That(ObvList.Count == 2);
             Assert.That(ObvList[0] == Item1);
-            Assert.That(ObvList[1] == Item3);           
+            Assert.That(ObvList[1] == Item3);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Gstc.Collections.Observable.Test.Standard {
         private void AddMockNotifiers() {
             //Sets up event testers
             ObvList.PropertyChanged += (sender, args) => AssertEvent.Call("PropertyChanged");
-            ObvList.CollectionChanged += (sender, args) => AssertEvent.Call("CollectionChanged");            
+            ObvList.CollectionChanged += (sender, args) => AssertEvent.Call("CollectionChanged");
         }
 
         private void AssertMockNotifiers(int timesPropertyCalled, int timesCollectionCalled) {
