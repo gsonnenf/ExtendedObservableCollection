@@ -1,3 +1,10 @@
+This repo is no longer maintained. This ObservableList and list binding from this library has been moved to:
+
+https://github.com/gsonnenf/Gstc.Collections.ObservableLists
+
+Gstc.Collections.ObservableLists is a stable release with much better code structure, documentation, bug fixes, better support for fringe cases and very extensive unit testing. The ObservableDictionary portion of this library has been ported to Gstc.ObsevableDictionary, but is still being tested to ensure reliable operation.
+
+
 # ExtendedObservableCollection
 <p align="center">
   <img src="https://user-images.githubusercontent.com/686792/53543486-0e638800-3ae0-11e9-9566-6d2f18a28e61.jpg" height="350">
